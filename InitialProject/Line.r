@@ -1,5 +1,5 @@
 # Read Data Values from CSV file
-data <- read.csv(r"(InitialProject\forestfires.csv)")
+data <- read.csv(r"(Datasets\forestfires.csv)")
 
 # Function to Ciel to nearest 10
 round_up_10 <- function(x) {
@@ -22,7 +22,7 @@ frequencies_day <- as.double(unname(table(to_count_frequency_day)))
 max_y_day <- round_up_10(max(frequencies_day))
 
 # Start PNG device driver to save output
-png(filename = r"(InitialProject\line_month.png)", bg = "white")
+png(filename = r"(Datasets\forestfires.csv)", bg = "white")
 
 # Plot frequencies with y limits from 0 to max_y
 # turn off default axes labels
