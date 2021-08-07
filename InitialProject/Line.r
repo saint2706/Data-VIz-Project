@@ -78,3 +78,9 @@ title(ylab = "Frequency of Forest Fires", col.lab = rgb(0, 0.5, 0))
 
 # Turn off device driver (to flush output to png)
 dev.off()
+
+## Conclusions
+# Most forest fires happen in the month of February
+# Most forest fires happen on a Sunday
+# Statistically, Forest fires have a higher chance of occuring on a
+# Sunday in February
