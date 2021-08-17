@@ -19,3 +19,10 @@ from mlxtend.plotting import plot_sequential_feature_selection as plot_sfs
 from sklearn.linear_model import LinearRegression,RidgeCV,LassoCV,ElasticNetCV
 
 target = 'area'
+
+path = r'Datasets\forestfires.csv'
+df = pd.read_csv(path)
+print(df.shape)
+print(df.dtypes)
+print(df.describe().T)
+
