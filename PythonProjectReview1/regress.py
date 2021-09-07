@@ -79,3 +79,43 @@ plt.tight_layout()
 plt.show()
 num_data = df[num_columns]
 print(pd.DataFrame(data=[num_data.skew(), num_data.kurtosis()], index=['skewness', 'kurtosis']))
+
+# Bivariate
+print(df['area'].describe(),'\n')
+print(y_outliers)
+
+# a categorical variable based on forest fire area damage
+# No damage, low, moderate, high, very high
+def area_cat(area):
+    if area == 0.0:
+        return "No damage"
+    elif area <= 1:
+        return "low"
+    elif area <= 25:
+        return "moderate"
+    elif area <= 100:
+        return "high"
+    else:
+        return "very high"
+
+df['damage_category'] = df['area'].apply(area_cat)
+print(df.head())
+
+# Categorical Analysis
+for col in cat_columns:
+    cross = pd.crosstab(index=df['damage_category'],columns=df[col],normalize='index')
+    cross.plot.barh(stacked=True,rot=40,cmap='hot')
+    plt.xlabel('% distribution per category')
+    plt.xticks(np.arange(0,1.1,0.1))
+    plt.title("Forestfire damage each {}".format(col))
+plt.show()
+
+# Numerical Analysis
+plt.figure(figsize=(20,40))
+for i,col in enumerate(num_columns,1):
+    plt.subplot(10,1,i)
+    if col in ['X','Y']:
+        sns.swarmplot(data=df,x=col,y=target,hue='damage_category')
+    else:
+        sns.scatterplot(data=df,x=col,y=target,hue='damage_category')
+plt.show()
