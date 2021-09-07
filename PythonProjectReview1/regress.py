@@ -67,6 +67,7 @@ for i,col in enumerate(cat_columns,1):
 plt.tight_layout()
 plt.show()    
 
+# analyzing numerical columns
 plt.figure(figsize=(18,40))
 for i,col in enumerate(num_columns,1):
     plt.subplot(8,4,i)
@@ -77,3 +78,4 @@ plt.tight_layout()
 plt.show()
 num_data = df[num_columns]
 print(pd.DataFrame(data=[num_data.skew(),num_data.kurtosis()],index=['skewness','kurtosis']))
+
