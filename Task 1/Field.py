@@ -301,7 +301,8 @@ def plot_player_attribute(player_index, observation, skills):
                              width=0.5, text=values, textposition='auto'), row=1, col=column)
 
     # read image
-    img = Image.open("../input/players/playerface/" + str(player_index) + ".webp")
+    print(player_index)
+    img = Image.open("../faces/" + str(player_index) + ".png")
     # Add image
     fig.add_layout_image(dict(source=img, xref="paper", yref="paper",
                               x=1, y=1.5, sizex=0.5, sizey=0.5, xanchor="right", yanchor="top"))
@@ -408,17 +409,19 @@ best_squad.drop("index", axis=1, inplace=True)
 print(best_squad)
 
 # location of player on chart.
-location_3_4_3 = {0: [150, 80],
-                  1: [150, 145],
-                  2: [220, 145],
-                  3: [80, 145],
-                  4: [60, 300],
-                  5: [150, 230],
-                  6: [240, 300],
-                  7: [150, 320],
-                  8: [60, 400],
-                  9: [150, 450],
-                  10: [240, 400]
+width_index = int(900 / 863.2)
+height_index = int(1200 / 1716.8)
+location_3_4_3 = {0: [150 * width_index, 80 * height_index],
+                  1: [150 * width_index, 145 * height_index],
+                  2: [220 * width_index, 145 * height_index],
+                  3: [80 * width_index, 145 * height_index],
+                  4: [60 * width_index, 300 * height_index],
+                  5: [150 * width_index, 230 * height_index],
+                  6: [240 * width_index, 300 * height_index],
+                  7: [150 * width_index, 320 * height_index],
+                  8: [60 * width_index, 400 * height_index],
+                  9: [150 * width_index, 450 * height_index],
+                  10: [240 * width_index, 400 * height_index]
                   }
 
 # Create figure
@@ -442,7 +445,7 @@ fig.update_yaxes(visible=False, range=[0, img_height * scale_factor], scaleancho
 
 # add player image
 for i in range(11):
-    img = Image.open("../input/players/playerface/" + str(player_index[i]) + ".webp")
+    img = Image.open("../faces/" + str(i) + ".png")
     fig.add_layout_image(dict(x=location_3_4_3[i][0], y=location_3_4_3[i][1], sizex=60, sizey=60, xref="x",
                               yref="y", opacity=1.0, layer="above", source=img))
 # Add background image
