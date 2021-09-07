@@ -166,7 +166,7 @@ summ <- df %>%
   group_by(League) %>% 
   summarise(age = mean(Age))
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 ggplot()+
   geom_histogram(df, mapping = aes(Age, fill = League))+
@@ -177,7 +177,7 @@ ggplot()+
   theme(legend.position = "bottom")+
   labs(y = "Frequency", title = "Distribution & The Average Age of The Players in each League", caption = "@EA Sports - FIFA 19")
 
-  options(repr.plot.width = 12, repr.plot.height = 8)
+  options(repr.plot.width = 16, repr.plot.height = 16)
 
 df %>% 
   group_by(League) %>% 
@@ -192,7 +192,7 @@ df %>%
         axis.ticks.x = element_line(colour = "darkslategray"))+
   scale_y_continuous(labels = c("0 €", "2 Billion €", "4 Billion €", "6 Billion €"), breaks = c(0, 2000000000, 4000000000, 6000000000))
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 world_map <- map_data("world")
 
@@ -309,7 +309,7 @@ bmi <- df %>%
   arrange(-BMI)%>%
   select(Name, Age, Position, Class, Height, Weight, BMI)
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 # Head & Tail Observations
 bmi2  <- rbind(
@@ -367,7 +367,7 @@ yht <- wilcox.test(yt1, yt2, alternative = "two.sided")
 
 xht; yht
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 grid.arrange(ncol = 2,
   ggplot(kor, aes(x = Preferred.Foot, y = Shot.Power, fill = Preferred.Foot))+
@@ -385,7 +385,7 @@ grid.arrange(ncol = 2,
     labs(title = "Finishing")
 )
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 df %>% 
   filter(Club == "Paris Saint-Germain") %>% 
@@ -401,7 +401,7 @@ df %>%
   theme(legend.position = "bottom")+
   labs(fill = NULL, x = NULL, title = "Paris Saint-Germain")
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 df %>% 
   group_by(League, Age) %>% 
@@ -415,7 +415,7 @@ df %>%
   theme(legend.position = "bottom")+
   labs(color = NULL)
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 df <- df %>% 
   mutate(Contract.Valid.Until = as.numeric(
@@ -443,7 +443,7 @@ df %>%
   scale_color_manual(values = c("seagreen", "royalblue", "orchid", "orange", "gray", "tomato", "navy", "red"))+
   facet_wrap(League~.)
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 powerful <- df %>% 
   group_by(Club) %>% 
@@ -489,7 +489,7 @@ df %>%
                                "#004170", "black","red", "#6CADDF"))+
   labs(x = NULL, y = NULL)
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 df %>% group_by(League) %>% count(Class) %>% 
   ggplot(aes(League, n, fill = Class)) +
@@ -499,7 +499,7 @@ df %>% group_by(League) %>% count(Class) %>%
   theme_minimal()+
   labs(x = NULL, y = NULL)
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 df %>% 
   filter(League == "Premier League") %>% 
@@ -514,7 +514,7 @@ df %>%
   theme_minimal()+
   labs(x = NULL, y = NULL)
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 
 similarity <- function(df, player, selectLeague, fill_variable, fill_strip,
@@ -595,7 +595,7 @@ grid.arrange(
                  player = "L. Messi", fill_variable = "royalblue", fill_strip = "navy")
     )
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+options(repr.plot.width = 16, repr.plot.height = 16)
 
 df %>% 
     ggplot(aes(Position, International.Reputation, color = Class))+
@@ -606,13 +606,9 @@ df %>%
     )+
     labs(y = "International Reputation")
 
-options(repr.plot.width = 12, repr.plot.height = 8)
+# options(repr.plot.width = 16, repr.plot.height = 16)
 
-ggplot(df, aes(Age, Wages))+
-    geom_hex()+
-    facet_wrap(League~., scales = "free")+
-    scale_fill_viridis_c()+
-    theme_minimal()
+# ggplot(df, aes(Age, Wages))+geom_hex()+facet_wrap(League~., scales = "free")+scale_fill_viridis_c()+theme_minimal()
 
 pca_df <- df %>% 
     filter(Class == "Forward") %>% 
