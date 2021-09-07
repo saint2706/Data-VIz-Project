@@ -119,3 +119,40 @@ for i,col in enumerate(num_columns,1):
     else:
         sns.scatterplot(data=df,x=col,y=target,hue='damage_category')
 plt.show()
+
+# Multivariate
+selected_features = df.drop(columns=['damage_category','day','month']).columns
+print(selected_features)
+sns.pairplot(df,hue='damage_category',vars=selected_features)
+plt.show()
+
+# Outlier Treatment
+out_columns = ['area','FFMC','ISI','rain']
+
+# Data Modelling
+
+# Encoding Categorically
+df = pd.get_dummies(df,columns=['day','month'],drop_first=True)
+
+# Data Transformation
+print(df[out_columns].describe())
+print(np.log1p(df[out_columns]).skew()) 
+print(np.log1p(df[out_columns]).kurtosis())
+
+# FFMC and rain are still having high skew and kurtosis values, 
+# since we will be using Linear regression model we cannot operate with such high values
+# so for FFMC we can remove the outliers in them using z-score method
+mask = df.loc[:,['FFMC']].apply(zscore).abs() < 3
+
+# Since most of the values in rain are 0.0, we can convert it as a categorical column
+df['rain'] = df['rain'].apply(lambda x: int(x > 0.0))
+
+df = df[mask.values]
+print(df.shape)
+
+out_columns.remove('rain')
+df[out_columns] = np.log1p(df[out_columns])
+print(df[out_columns].skew())
+
+# we will use this dataframe for building our ML model
+df_ml = df.drop(columns=['damage_category']).copy()
