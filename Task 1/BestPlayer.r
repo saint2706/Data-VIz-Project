@@ -190,7 +190,7 @@ df %>%
   scale_fill_gradient(low = "khaki", high = "seagreen")+
   theme(axis.line.y = element_line(colour = "darkslategray"),
         axis.ticks.x = element_line(colour = "darkslategray"))+
-  scale_y_continuous(labels = c("0 €", "2 Billion €", "4 Billion €", "6 Billion €"))
+  scale_y_continuous(labels = c("0 €", "2 Billion €", "4 Billion €", "6 Billion €"), breaks = c(0, 2000000000, 4000000000, 6000000000))
 
 options(repr.plot.width = 12, repr.plot.height = 8)
 
