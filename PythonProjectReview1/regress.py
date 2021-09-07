@@ -44,3 +44,36 @@ plt.xticks([i for i in range(0,1200,50)])
 plt.show()
 ax = sns.boxplot(df[target])
 
+# Outlier points
+y_outliers = df[abs(zscore(df[target])) >= 3 ]
+print(y_outliers)
+
+# Independent Columns
+dfa = df.drop(columns=target)
+cat_columns = dfa.select_dtypes(include='object').columns.tolist()
+num_columns = dfa.select_dtypes(exclude='object').columns.tolist()
+print(cat_columns)
+print(num_columns)
+
+# analyzing categorical columns
+plt.figure(figsize=(16,10))
+for i,col in enumerate(cat_columns,1):
+    plt.subplot(2,2,i)
+    sns.countplot(data=dfa,y=col)
+    plt.subplot(2,2,i+2)
+    df[col].value_counts(normalize=True).plot.bar()
+    plt.ylabel(col)
+    plt.xlabel('% distribution per category')
+plt.tight_layout()
+plt.show()    
+
+plt.figure(figsize=(18,40))
+for i,col in enumerate(num_columns,1):
+    plt.subplot(8,4,i)
+    sns.kdeplot(df[col],color='g',shade=True)
+    plt.subplot(8,4,i+10)
+    df[col].plot.box()
+plt.tight_layout() 
+plt.show()
+num_data = df[num_columns]
+print(pd.DataFrame(data=[num_data.skew(),num_data.kurtosis()],index=['skewness','kurtosis']))
