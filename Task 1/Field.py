@@ -22,11 +22,11 @@ print(col)
 # dimensions of data
 print(df.shape)
 # info for all dataset columns_name, dataType, null_count
-df.info()
+print(df.info())
 # description of data min, max, mean, std values for all columns
-df.describe()
+print(df.describe())
 # count number of rows that have null value in every columns.
-df.isnull().sum()
+print(df.isnull().sum())
 
 # Data Visualisation
 
