@@ -1,5 +1,5 @@
+# Import Modules
 import warnings
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -13,23 +13,26 @@ from sklearn.preprocessing import OrdinalEncoder
 
 warnings.filterwarnings('ignore')
 
-# read data and show some sample.
+
+# Read FIFA 19 dataset and show info and describe columns from it.
 df = pd.read_csv("../Datasets/data.csv", index_col="Unnamed: 0")
 print(df.head())
-# get columns names.
+# get column names.
 col = df.columns
 print(col)
-# dimension of data
+# dimensions of data
 print(df.shape)
 # info for all dataset columns_name, dataType, null_count
 df.info()
-# describe of data min, max, mean, std values for all columns
+# description of data min, max, mean, std values for all columns
 df.describe()
 # count number of rows that have null value in every columns.
 df.isnull().sum()
 
 # Data Visualisation
-# group data by Nationality and sort it by number of player to get most country have player.
+
+# Calculate top 10 countries sorted by most players in the game
+# group data by Nationality and sort it by number of players to get most countries having players.
 national_player = df[['Nationality', "ID"]].groupby(by=['Nationality'], as_index=False).count().sort_values(
     "ID", ascending=False)
 national_player.rename(columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
@@ -37,25 +40,26 @@ national_player = national_player.reset_index()
 national_player = national_player.drop(["index"], axis=1)
 national_player.head(10)
 
-# Slicing first 10 row form country player_count dataset
+# Slicing first 10 rows from country player_count dataset
 player_count = national_player.iloc[0:10, 1]
 national = national_player.iloc[0:10, 0]
 
-# select seaborn style of chart to make display more good for eyes.
+# select seaborn style of chart to make display easy on the eyes.
 plt.style.use("seaborn")
-# create bar chart between most 10 country and no. of player
+# create bar chart
 plt.bar(national, player_count)
 plt.xticks(rotation=45)
 plt.title('Top 10 Country that have player in FIFA 19')
 plt.show()
 
-# slicing Age column and group it and count no. of player have same age for all age.
+# Show Distribution of Age for all players
+# slicing Age column and group it and count no. of players that have same age for all ages.
 player_age = df[['Age', "ID"]].groupby(by=['Age'], as_index=False).count().sort_values("ID", ascending=False)
 player_age.rename(columns={'ID': 'count'}, inplace=True)
 player_age = player_age.reset_index().drop(["index"], axis=1)
 player_age.head()
 
-# display histogram of age for all player and fit normal distribution line for it.
+# display histogram of age for all players and fit a normal distribution line for it.
 _, bins, _ = plt.hist(df.Age, bins=df.Age.max() - df.Age.min(), label="Age with no. of player")
 mu, sigma = sp.stats.norm.fit(df.Age)
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
@@ -67,30 +71,33 @@ plt.xlabel("Age of player")
 plt.legend()
 plt.show()
 
-# count number for left and right foot preferred players
+# Preferred foot analysis.
+# count number of left and right foot preferred players
 preferred_foot = df.groupby("Preferred Foot")["Preferred Foot"].count()
 print(preferred_foot)
 
-# plot pie chart to display the percentage for every foot that players preferred
+# plot pie chart to display the percentage for the preferred foot
 plt.pie(preferred_foot, labels=["left", "right"], explode=[0.1, 0], autopct='%1.2f%%', colors=["#ea157a", "#0089af"])
 plt.legend()
 plt.show()
 
-# count number for every position in playground that have players and sorted it.
+# Show positions with the most number of players
+# count number of players for every position in playground that have players and sort it.
 player_position = df[["Position", "ID"]].groupby(by=['Position'], as_index=False).count().sort_values("ID",
                                                                                                       ascending=False)
 player_position.rename(columns={'ID': 'count'}, inplace=True)
 player_position = player_position.reset_index().drop(["index"], axis=1)
 player_position.head()
 
-# plot bar chart to display the number of players for every position with sorted.
+# plot bar chart to display the number of players for every position.
 plt.figure(figsize=(15, 7))
 plt.bar(player_position["Position"], player_position["count"])
 plt.xticks(rotation=70)
 plt.title("Player's Position Distribution", color="black")
 plt.show()
 
-# get top 10 ST players in the world.
+# Top 10 players for ST, GK, LW, RF Position
+
 ST_position = df[df["Position"] == "ST"].sort_values("Overall", ascending=False)[["Name", "Overall"]]
 ST_position = ST_position.iloc[:10, :]
 
@@ -104,7 +111,7 @@ RF_position = df[df["Position"] == "RF"].sort_values("Overall", ascending=False)
 RF_position = RF_position.iloc[:10, :]
 
 
-# function plot bar chart for top 10 player in selected position.
+# function plot bar chart for top 10 players in selected positions.
 def draw(df, color, position, ax):
     plt.style.use('tableau-colorblind10')
     sns.barplot(df["Name"], df["Overall"], color=color, ax=ax).set_title("Most Top 10 " + position + " players",
@@ -112,7 +119,7 @@ def draw(df, color, position, ax):
     ax.set_xticklabels(ax.get_xticklabels(), rotation=40)
 
 
-# plot 4 figures that display Top 10 player in ST, GK, LW, RF positions.
+# plot 4 figures that display Top 10 players in ST, GK, LW, RF positions.
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=[20, 15])
 
 draw(GK_position, "#e91e63", "GK", axes[0, 0])
@@ -121,8 +128,8 @@ draw(LW_position, "#1ab39f", "LW", axes[1, 0])
 draw(RF_position, "#72bd35", "RF", axes[1, 1])
 plt.show()
 
-
-# function that convert value column of players to numeric.
+# Distribution of all player's value and calcuate The average of players value.
+# function that converts value column of players to numeric.
 def getValue(df):
     new = []
     for i in df:
@@ -150,6 +157,7 @@ plt.show()
 sns.boxplot(x=getValue(df.Value.values))
 plt.show()
 
+# Overall rating distribution and most fit line for it.
 # plot the distribution of overall rating.
 plt.figure(figsize=(15, 7))
 sns.countplot(df.Overall, label="overall_hist", color="#c81067")
@@ -166,6 +174,7 @@ plt.title("Overall rating histogram")
 plt.legend()
 plt.show()
 
+# Make Analysis for Real Madrid Club.
 # select Real Madrid player from data
 real_Madrid_players = df[df.Club == "Real Madrid"]
 real_Madrid_players = real_Madrid_players[["Name", "Age", "Nationality", "Value", "Release Clause", "Overall"]]
@@ -184,7 +193,7 @@ print("Overall mean value for Real Madrid Team = ", round(real_Madrid_players.Ov
 
 print("Release Corr. Overall= ", round(real_Madrid_players.Release.corr(real_Madrid_players.Overall), 2))
 
-# plot chart for most player have Release.
+# plot chart for.
 plt.figure(figsize=(14, 8))
 plt.bar(real_Madrid_players.Name[:20], real_Madrid_players.Release[:20], width=0.8,
         label="player Vs Value")
@@ -195,7 +204,7 @@ plt.ylabel("value")
 plt.legend()
 plt.show()
 
-
+# Calculate the relation between weight and height for all players(corr. and distribution)
 # function that convert weight to numeric.
 def get_weight(weight):
     new = []
@@ -240,6 +249,7 @@ plt.show()
 stats.mode(weight_height.Height)
 print(weight_height.Height.shape)
 
+# Top 10 expensive teams in the world
 # drop nan from needed columns and group by Clubs and sort it by sum op player values.
 club_value_df = df[["Club", "Release Clause"]].dropna(how="any")
 club_value_df.columns = ["club", "value"]
@@ -258,6 +268,7 @@ plt.xticks(rotation=40)
 plt.legend()
 plt.show()
 
+# Calculate ATTRIBUTE DETAILS for any player you want.
 # attribute dictionary key attribute and values skills columns for every attribute.
 attribute_dict = {"shooting": ["Positioning", "Finishing", "ShotPower", "LongShots", "Volleys", "Penalties"],
                   "passing": ["Vision", "Crossing", "FKAccuracy", "ShortPassing", "LongPassing", "Curve"],
@@ -315,7 +326,7 @@ def plot_player_attribute(player_index, observation, skills):
     fig.update_xaxes(range=[0, 100])
     fig.show()
 
-
+# Player Attributes select player index form dataset
 # draw attribute details for MESSI.
 player_index = 0
 player_skills = calculate_attribute(df, player_index)
@@ -336,7 +347,7 @@ player_index = 26
 player_skills = calculate_attribute(df, player_index)
 plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.keys()))
 
-
+# Radar Plot for player attribute's Details
 # function plot radar diagram for any player, need player skills and player name.
 # noinspection PyTypeChecker
 def plot_player_radar(skills, player_name):
@@ -360,6 +371,7 @@ player_index = 26
 player_skills = calculate_attribute(df, player_index)
 plot_player_radar(player_skills, df.iloc[player_index]["Name"])
 
+# Radar plot for player's skills.
 # select player, skills columns and convert it to numeric.
 player_index = 0
 col = ['Crossing', 'Finishing', 'ShortPassing', 'SprintSpeed', 'Stamina', 'Strength', 'Vision', 'Acceleration',
@@ -380,6 +392,7 @@ fig.add_trace(go.Scatterpolar(r=observation, theta=categories, fill='toself',
 fig.update_layout(polar=dict(radialaxis=dict(visible=False, range=[0, 100])), showlegend=True)
 fig.show()
 
+# Show the best squad in the world by choosing Lineup.
 # player position in each line in playground.
 position = {"defender": ["RB", "LB", "CB", "LCB", "RCB", "RWB", "RDM", "CDM", "LDM", "LWB"],
             "midfielder": ["RM", "LM", "CM", "LCM", "RCM", "RAM", "CAM", "LAM"],
@@ -408,6 +421,7 @@ player_index = list(best_squad.loc[:, ["index"]].values.reshape(11, ))
 best_squad.drop("index", axis=1, inplace=True)
 print(best_squad)
 
+# Plot the best squad on playground based on Lineup [3,4,3].
 # location of player on chart.
 location_3_4_3 = {0: [150, 80],
                   1: [150, 145],
