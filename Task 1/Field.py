@@ -13,7 +13,6 @@ from sklearn.preprocessing import OrdinalEncoder
 
 warnings.filterwarnings('ignore')
 
-
 # Read FIFA 19 dataset and show info and describe columns from it.
 df = pd.read_csv("../Datasets/data.csv", index_col="Unnamed: 0")
 print(df.head())
@@ -128,7 +127,8 @@ draw(LW_position, "#1ab39f", "LW", axes[1, 0])
 draw(RF_position, "#72bd35", "RF", axes[1, 1])
 plt.show()
 
-# Distribution of all player's value and calcuate The average of players value.
+
+# Distribution of all player's value and calculate The average of players value.
 # function that converts value column of players to numeric.
 def getValue(df):
     new = []
@@ -203,6 +203,7 @@ plt.xlabel("player name")
 plt.ylabel("value")
 plt.legend()
 plt.show()
+
 
 # Calculate the relation between weight and height for all players(corr. and distribution)
 # function that convert weight to numeric.
@@ -326,6 +327,7 @@ def plot_player_attribute(player_index, observation, skills):
     fig.update_xaxes(range=[0, 100])
     fig.show()
 
+
 # Player Attributes select player index form dataset
 # draw attribute details for MESSI.
 player_index = 0
@@ -346,6 +348,7 @@ plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.ke
 player_index = 26
 player_skills = calculate_attribute(df, player_index)
 plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.keys()))
+
 
 # Radar Plot for player attribute's Details
 # function plot radar diagram for any player, need player skills and player name.
