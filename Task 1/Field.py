@@ -193,7 +193,7 @@ print("Overall mean value for Real Madrid Team = ", round(real_Madrid_players.Ov
 
 print("Release Corr. Overall= ", round(real_Madrid_players.Release.corr(real_Madrid_players.Overall), 2))
 
-# plot chart for.
+# plot chart for Release Values.
 plt.figure(figsize=(14, 8))
 plt.bar(real_Madrid_players.Name[:20], real_Madrid_players.Release[:20], width=0.8,
         label="Player Vs Value")
@@ -380,7 +380,7 @@ col = ['Crossing', 'Finishing', 'ShortPassing', 'SprintSpeed', 'Stamina', 'Stren
        'BallControl']
 observation = df.loc[player_index, col].astype("int64")
 
-# use to concat skills with it's value.
+# use to concatenate skills with it's value.
 categories = []
 for i in col:
     categories.append(i + ": " + str(int(observation[i])) + "%")
