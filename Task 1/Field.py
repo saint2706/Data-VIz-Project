@@ -15,6 +15,7 @@ warnings.filterwarnings('ignore')
 # Read FIFA 19 dataset and show info and describe columns from it.
 df = pd.read_csv("../Datasets/data.csv", index_col="Unnamed: 0")
 print(df.head())
+df.to_csv("../Outputs/first output.csv", index=False)
 # get column names.
 col = df.columns
 print(col)
