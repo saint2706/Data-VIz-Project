@@ -1,5 +1,6 @@
 # Import Modules
 import warnings
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -9,8 +10,6 @@ import seaborn as sns
 from PIL import Image
 from plotly.subplots import make_subplots
 from scipy import stats
-from sklearn.preprocessing import OrdinalEncoder
-
 warnings.filterwarnings('ignore')
 
 # Read FIFA 19 dataset and show info and describe columns from it.
@@ -32,31 +31,31 @@ df.isnull().sum()
 
 # Calculate top 10 countries sorted by most players in the game
 # group data by Nationality and sort it by number of players to get most countries having players.
-national_player = df[['Nationality', "ID"]].groupby(by=['Nationality'], as_index=False).count().sort_values(
+national_players = df[['Nationality', "ID"]].groupby(by=['Nationality'], as_index=False).count().sort_values(
     "ID", ascending=False)
-national_player.rename(columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
-national_player = national_player.reset_index()
-national_player = national_player.drop(["index"], axis=1)
-national_player.head(10)
+national_players.rename(columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
+national_players = national_players.reset_index()
+national_players = national_players.drop(["index"], axis=1)
+national_players.head(10)
 
 # Slicing first 10 rows from country player_count dataset
-player_count = national_player.iloc[0:10, 1]
-national = national_player.iloc[0:10, 0]
+player_count = national_players.iloc[0:10, 1]
+nation = national_players.iloc[0:10, 0]
 
 # select seaborn style of chart to make display easy on the eyes.
 plt.style.use("seaborn")
 # create bar chart
-plt.bar(national, player_count)
+plt.bar(nation, player_count)
 plt.xticks(rotation=45)
-plt.title('Top 10 Country that have player in FIFA 19')
+plt.title('Top 10 Countries that have players in FIFA 19')
 plt.show()
 
 # Show Distribution of Age for all players
 # slicing Age column and group it and count no. of players that have same age for all ages.
-player_age = df[['Age', "ID"]].groupby(by=['Age'], as_index=False).count().sort_values("ID", ascending=False)
-player_age.rename(columns={'ID': 'count'}, inplace=True)
-player_age = player_age.reset_index().drop(["index"], axis=1)
-player_age.head()
+player_ages = df[['Age', "ID"]].groupby(by=['Age'], as_index=False).count().sort_values("ID", ascending=False)
+player_ages.rename(columns={'ID': 'count'}, inplace=True)
+player_ages = player_ages.reset_index().drop(["index"], axis=1)
+player_ages.head()
 
 # display histogram of age for all players and fit a normal distribution line for it.
 _, bins, _ = plt.hist(df.Age, bins=df.Age.max() - df.Age.min(), label="Age with no. of player")
@@ -64,9 +63,9 @@ mu, sigma = sp.stats.norm.fit(df.Age)
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
 
-plt.title('Distribution of Age with players in FIFA 19')
-plt.ylabel("no. of player")
-plt.xlabel("Age of player")
+plt.title('Distribution of Age of players in FIFA 19')
+plt.ylabel("Number of players")
+plt.xlabel("Age of players")
 plt.legend()
 plt.show()
 
@@ -110,10 +109,10 @@ RF_position = df[df["Position"] == "RF"].sort_values("Overall", ascending=False)
 RF_position = RF_position.iloc[:10, :]
 
 
-# function plot bar chart for top 10 players in selected positions.
+# function to plot bar chart for top 10 players in selected positions.
 def draw(df, color, position, ax):
     plt.style.use('tableau-colorblind10')
-    sns.barplot(df["Name"], df["Overall"], color=color, ax=ax).set_title("Most Top 10 " + position + " players",
+    sns.barplot(df["Name"], df["Overall"], color=color, ax=ax).set_title("Top 10 " + position + " players",
                                                                          fontsize=14)
     ax.set_xticklabels(ax.get_xticklabels(), rotation=40)
 
@@ -128,7 +127,7 @@ draw(RF_position, "#72bd35", "RF", axes[1, 1])
 plt.show()
 
 
-# Distribution of all player's value and calculate The average of players value.
+# Distribution of all player's value and calculate The average value of players.
 # function that converts value column of players to numeric.
 def getValue(df):
     new = []
@@ -148,7 +147,7 @@ def getValue(df):
 
 # convert value columns to numeric and calculate the average value.
 lis = getValue(df.Value.values)
-print("The average of players value in the world = ", round(np.average(np.array(lis)) / 10 ** 6, 2), "M")
+print("The average value of players in the world = ", round(np.average(np.array(lis)) / 10 ** 6, 2), "M")
 
 # plot histogram of values to show distribution of it.
 plt.hist(lis, bins=100)
@@ -161,7 +160,7 @@ plt.show()
 # plot the distribution of overall rating.
 plt.figure(figsize=(15, 7))
 sns.countplot(df.Overall, label="overall_hist", color="#c81067")
-plt.title("Overall rating distribution for all Player")
+plt.title("Overall rating distribution for all Players")
 plt.legend()
 plt.show()
 
@@ -170,7 +169,7 @@ _, bins, _ = plt.hist(df.Overall, bins=(df.Overall.max() - df.Overall.min()), la
 mu, sigma = sp.stats.norm.fit(df.Overall)
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
-plt.title("Overall rating histogram")
+plt.title("Overall ratings histogram")
 plt.legend()
 plt.show()
 
@@ -196,8 +195,8 @@ print("Release Corr. Overall= ", round(real_Madrid_players.Release.corr(real_Mad
 # plot chart for.
 plt.figure(figsize=(14, 8))
 plt.bar(real_Madrid_players.Name[:20], real_Madrid_players.Release[:20], width=0.8,
-        label="player Vs Value")
-plt.title("Most RealMadrid players have Release Value")
+        label="Player Vs Value")
+plt.title("Real Madrid Release Values")
 plt.xticks(rotation=40)
 plt.xlabel("player name")
 plt.ylabel("value")
@@ -262,9 +261,9 @@ club_value_df.reset_index().drop("index", axis=1).head(10)
 plt.figure(figsize=(12, 7))
 plt.style.use("seaborn")
 plt.bar(club_value_df.club[:10], club_value_df.value[:10], label="club with value")
-plt.title("Top 10 expensive teams in the world", fontsize=15)
+plt.title("Top 10 most expensive teams in the world", fontsize=15)
 plt.xlabel("Teams")
-plt.ylabel("value")
+plt.ylabel("Value")
 plt.xticks(rotation=40)
 plt.legend()
 plt.show()
@@ -313,7 +312,6 @@ def plot_player_attribute(player_index, observation, skills):
                              width=0.5, text=values, textposition='auto'), row=1, col=column)
 
     # read image
-    print(player_index)
     img = Image.open("../faces/" + str(player_index) + ".png")
     # Add image
     fig.add_layout_image(dict(source=img, xref="paper", yref="paper",
@@ -474,22 +472,3 @@ fig.update_layout(width=img_width * scale_factor, height=img_height * scale_fact
                   title=({'text': "---Best Squad in The World for Lineup[3,4,3]---",
                           'y': 0.95, 'x': 0.5, 'xanchor': 'center', 'yanchor': 'top', }))
 fig.show()
-
-# select column that i will need to predict
-col = ['Age', "Nationality", 'Overall', "Club", 'Wage', "Value", 'Special',
-       'Preferred Foot', 'Position', 'Height', 'Weight', 'Release Clause']
-# drop any row that has null values.
-new_data = df[col].dropna(how="any")
-# open encoder to convert column values to numeric.
-ord_enc = OrdinalEncoder()
-for i in ["Nationality", "Club", "Preferred Foot", "Position"]:
-    new_data[i] = ord_enc.fit_transform(new_data[[i]])
-
-new_data["Value"] = getValue(new_data["Value"])
-new_data["Wage"] = getValue(new_data["Wage"])
-new_data["Release Clause"] = getValue(new_data["Release Clause"])
-new_data["Height"] = get_height(new_data["Height"])
-new_data["Height"] = new_data["Height"].astype('float64')
-new_data["Weight"] = get_weight(new_data["Weight"])
-new_data["Weight"] = new_data["Weight"].astype("float64")
-new_data.head(10)
