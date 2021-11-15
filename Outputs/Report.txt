@@ -1,0 +1,3 @@
+The average value of players in the world = 2.41M
+Overall mean value for Real Madrid Team = 78%
+Release Corr. Overall= 0.89
