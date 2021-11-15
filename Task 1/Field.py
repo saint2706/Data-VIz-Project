@@ -159,12 +159,13 @@ lis = getValue(df.Value.values)
 print("The average value of players in the world = ",
       round(np.average(np.array(lis)) / 10 ** 6, 2), "M")
 
-# plot histogram of values to show distribution of it.
+
+'''# plot histogram of values to show distribution of it.
 plt.hist(lis, bins=100)
 plt.show()
 
 sns.boxplot(x=getValue(df.Value.values))
-plt.show()
+plt.show()'''
 
 # Overall rating distribution and most fit line for it.
 # plot the distribution of overall rating.
@@ -244,25 +245,10 @@ weight_height.Height = get_height(list(weight_height.Height.values))
 
 # plot scatter for  weight column.
 weight_height.sort_values("Weight", ascending=True, inplace=True)
-plt.figure(figsize=(15, 10))
-plt.scatter(weight_height.Weight, weight_height.Height)
-plt.xticks(rotation=40)
-plt.show()
-
 weight_height.Weight = weight_height.Weight.astype("float64")
 weight_height.Height = weight_height.Height.astype("float64")
 print("correlation between Weight and Height of players=",
       round(weight_height.Weight.corr(weight_height.Height), 2))
-
-# plot the distribution of weight.
-plt.hist(weight_height.Weight, bins=40)
-plt.show()
-
-# plot distribution of Height columns.
-plt.hist(weight_height.Height, bins=40)
-plt.show()
-stats.mode(weight_height.Height)
-print(weight_height.Height.shape)
 
 # Top 10 expensive teams in the world
 # drop nan from needed columns and group by Clubs and sort it by sum op player values.
@@ -338,7 +324,7 @@ def plot_player_attribute(player_index, observation, skills):
     fig.update_layout(autosize=False, height=300, width=2300, bargap=0.5, bargroupgap=0.3, barmode="overlay",
                       hovermode="x", margin=dict(r=0, l=0, b=0, t=100),
                       title=(
-                          {'text': observation["Name"] + " ATTRIBUTE DETAILS", 'y': 0.9, 'x': 0.5, 'xanchor': 'right',
+                          {'text': observation["Name"] + " Attribute Details", 'y': 0.9, 'x': 0.5, 'xanchor': 'right',
                            'yanchor': 'top'}))
     fig.update_xaxes(range=[0, 100])
     fig.show()
@@ -489,7 +475,7 @@ for i in range(11):
     fig.add_layout_image(dict(x=location_3_4_3[i][0], y=location_3_4_3[i][1], sizex=60, sizey=60, xref="x",
                               yref="y", opacity=1.0, layer="above", source=img))
 # Add background image
-img = Image.open("../field.jpg")
+img = Image.open(r"field.jpg")
 fig.add_layout_image(dict(x=0, sizex=img_width * scale_factor, y=img_height * scale_factor,
                           sizey=img_height * scale_factor, xref="x", yref="y", opacity=1.0, layer="below",
                           sizing="stretch", source=img))
