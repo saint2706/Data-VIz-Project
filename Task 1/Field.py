@@ -13,9 +13,9 @@ from scipy import stats
 warnings.filterwarnings('ignore')
 
 # Read FIFA 19 dataset and show info and describe columns from it.
-df = pd.read_csv("../Datasets/data.csv", index_col="Unnamed: 0")
+df = pd.read_csv(r"Datasets\data.csv", index_col="Unnamed: 0")
 print(df.head())
-df.to_csv("../Outputs/first output.csv", index=False)
+df.to_csv(r"Outputs\first output.csv", index=False)
 # get column names.
 col = df.columns
 print(col)
@@ -34,7 +34,8 @@ print(df.isnull().sum())
 # group data by Nationality and sort it by number of players to get most countries having players.
 national_players = df[['Nationality', "ID"]].groupby(by=['Nationality'], as_index=False).count().sort_values(
     "ID", ascending=False)
-national_players.rename(columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
+national_players.rename(
+    columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
 national_players = national_players.reset_index()
 national_players = national_players.drop(["index"], axis=1)
 national_players.head(10)
@@ -53,13 +54,15 @@ plt.show()
 
 # Show Distribution of Age for all players
 # slicing Age column and group it and count no. of players that have same age for all ages.
-player_ages = df[['Age', "ID"]].groupby(by=['Age'], as_index=False).count().sort_values("ID", ascending=False)
+player_ages = df[['Age', "ID"]].groupby(
+    by=['Age'], as_index=False).count().sort_values("ID", ascending=False)
 player_ages.rename(columns={'ID': 'count'}, inplace=True)
 player_ages = player_ages.reset_index().drop(["index"], axis=1)
 player_ages.head()
 
 # display histogram of age for all players and fit a normal distribution line for it.
-_, bins, _ = plt.hist(df.Age, bins=df.Age.max() - df.Age.min(), label="Age with no. of player")
+_, bins, _ = plt.hist(df.Age, bins=df.Age.max() -
+                      df.Age.min(), label="Age with no. of player")
 mu, sigma = sp.stats.norm.fit(df.Age)
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
@@ -76,7 +79,8 @@ preferred_foot = df.groupby("Preferred Foot")["Preferred Foot"].count()
 print(preferred_foot)
 
 # plot pie chart to display the percentage for the preferred foot
-plt.pie(preferred_foot, labels=["left", "right"], explode=[0.1, 0], autopct='%1.2f%%', colors=["#ea157a", "#0089af"])
+plt.pie(preferred_foot, labels=["left", "right"], explode=[
+        0.1, 0], autopct='%1.2f%%', colors=["#ea157a", "#0089af"])
 plt.legend()
 plt.show()
 
@@ -97,16 +101,20 @@ plt.show()
 
 # Top 10 players for ST, GK, LW, RF Position
 
-ST_position = df[df["Position"] == "ST"].sort_values("Overall", ascending=False)[["Name", "Overall"]]
+ST_position = df[df["Position"] == "ST"].sort_values(
+    "Overall", ascending=False)[["Name", "Overall"]]
 ST_position = ST_position.iloc[:10, :]
 
-GK_position = df[df["Position"] == "GK"].sort_values("Overall", ascending=False)[["Name", "Overall"]]
+GK_position = df[df["Position"] == "GK"].sort_values(
+    "Overall", ascending=False)[["Name", "Overall"]]
 GK_position = GK_position.iloc[:10, :]
 
-LW_position = df[df["Position"] == "LW"].sort_values("Overall", ascending=False)[["Name", "Overall"]]
+LW_position = df[df["Position"] == "LW"].sort_values(
+    "Overall", ascending=False)[["Name", "Overall"]]
 LW_position = LW_position.iloc[:10, :]
 
-RF_position = df[df["Position"] == "RF"].sort_values("Overall", ascending=False)[["Name", "Overall"]]
+RF_position = df[df["Position"] == "RF"].sort_values(
+    "Overall", ascending=False)[["Name", "Overall"]]
 RF_position = RF_position.iloc[:10, :]
 
 
@@ -148,7 +156,8 @@ def getValue(df):
 
 # convert value columns to numeric and calculate the average value.
 lis = getValue(df.Value.values)
-print("The average value of players in the world = ", round(np.average(np.array(lis)) / 10 ** 6, 2), "M")
+print("The average value of players in the world = ",
+      round(np.average(np.array(lis)) / 10 ** 6, 2), "M")
 
 # plot histogram of values to show distribution of it.
 plt.hist(lis, bins=100)
@@ -166,7 +175,8 @@ plt.legend()
 plt.show()
 
 # plot the distribution of overall rating and get most fit line for it.
-_, bins, _ = plt.hist(df.Overall, bins=(df.Overall.max() - df.Overall.min()), label="overall_hist", color="#0093bc")
+_, bins, _ = plt.hist(df.Overall, bins=(
+    df.Overall.max() - df.Overall.min()), label="overall_hist", color="#0093bc")
 mu, sigma = sp.stats.norm.fit(df.Overall)
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
@@ -177,7 +187,8 @@ plt.show()
 # Make Analysis for Real Madrid Club.
 # select Real Madrid player from data
 real_Madrid_players = df[df.Club == "Real Madrid"]
-real_Madrid_players = real_Madrid_players[["Name", "Age", "Nationality", "Value", "Release Clause", "Overall"]]
+real_Madrid_players = real_Madrid_players[[
+    "Name", "Age", "Nationality", "Value", "Release Clause", "Overall"]]
 real_Madrid_players.rename(columns={'Release Clause': 'Release'}, inplace=True)
 
 # convert value column to numeric.
@@ -189,9 +200,11 @@ real_Madrid_players = real_Madrid_players.reset_index()
 real_Madrid_players.drop("index", axis=1, inplace=True)
 real_Madrid_players.head(10)
 
-print("Overall mean value for Real Madrid Team = ", round(real_Madrid_players.Overall.mean()), "%")
+print("Overall mean value for Real Madrid Team = ",
+      round(real_Madrid_players.Overall.mean()), "%")
 
-print("Release Corr. Overall= ", round(real_Madrid_players.Release.corr(real_Madrid_players.Overall), 2))
+print("Release Corr. Overall= ", round(
+    real_Madrid_players.Release.corr(real_Madrid_players.Overall), 2))
 
 # plot chart for Release Values.
 plt.figure(figsize=(14, 8))
@@ -238,7 +251,8 @@ plt.show()
 
 weight_height.Weight = weight_height.Weight.astype("float64")
 weight_height.Height = weight_height.Height.astype("float64")
-print("correlation between Weight and Height of players=", round(weight_height.Weight.corr(weight_height.Height), 2))
+print("correlation between Weight and Height of players=",
+      round(weight_height.Weight.corr(weight_height.Height), 2))
 
 # plot the distribution of weight.
 plt.hist(weight_height.Weight, bins=40)
@@ -255,13 +269,15 @@ print(weight_height.Height.shape)
 club_value_df = df[["Club", "Release Clause"]].dropna(how="any")
 club_value_df.columns = ["club", "value"]
 club_value_df.value = getValue(club_value_df.value)
-club_value_df = club_value_df.groupby(by=['club'], as_index=False).sum().sort_values(by="value", ascending=False)
+club_value_df = club_value_df.groupby(
+    by=['club'], as_index=False).sum().sort_values(by="value", ascending=False)
 club_value_df.reset_index().drop("index", axis=1).head(10)
 
 # plot most 10 team have expensive players.
 plt.figure(figsize=(12, 7))
 plt.style.use("seaborn")
-plt.bar(club_value_df.club[:10], club_value_df.value[:10], label="club with value")
+plt.bar(club_value_df.club[:10],
+        club_value_df.value[:10], label="club with value")
 plt.title("Top 10 most expensive teams in the world", fontsize=15)
 plt.xlabel("Teams")
 plt.ylabel("Value")
@@ -290,7 +306,8 @@ def calculate_attribute(dataframe, player_index):
 
     for i in attribute_dict.keys():
         lis = attribute_dict.get(i)
-        player_skills.append(int(sum(player_observation[lis]) / len(player_observation[lis])))
+        player_skills.append(
+            int(sum(player_observation[lis]) / len(player_observation[lis])))
 
     return {i.upper() + ": " + str(j) + "%": j for i, j in zip(attribute_dict.keys(), player_skills)}
 
@@ -313,7 +330,7 @@ def plot_player_attribute(player_index, observation, skills):
                              width=0.5, text=values, textposition='auto'), row=1, col=column)
 
     # read image
-    img = Image.open("../faces/" + str(player_index) + ".png")
+    img = Image.open("faces/" + str(player_index) + ".png")
     # Add image
     fig.add_layout_image(dict(source=img, xref="paper", yref="paper",
                               x=1, y=1.5, sizex=0.5, sizey=0.5, xanchor="right", yanchor="top"))
@@ -331,22 +348,26 @@ def plot_player_attribute(player_index, observation, skills):
 # draw attribute details for MESSI.
 player_index = 0
 player_skills = calculate_attribute(df, player_index)
-plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.keys()))
+plot_player_attribute(
+    player_index, df.iloc[player_index], list(player_skills.keys()))
 
 # draw attribute details for RONALDO.
 player_index = 1
 player_skills = calculate_attribute(df, player_index)
-plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.keys()))
+plot_player_attribute(
+    player_index, df.iloc[player_index], list(player_skills.keys()))
 
 # draw attribute details for Neymar Jr
 player_index = 2
 player_skills = calculate_attribute(df, player_index)
-plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.keys()))
+plot_player_attribute(
+    player_index, df.iloc[player_index], list(player_skills.keys()))
 
 # draw attribute details for M.SALAH.
 player_index = 26
 player_skills = calculate_attribute(df, player_index)
-plot_player_attribute(player_index, df.iloc[player_index], list(player_skills.keys()))
+plot_player_attribute(
+    player_index, df.iloc[player_index], list(player_skills.keys()))
 
 
 # Radar Plot for player attribute's Details
@@ -358,7 +379,8 @@ def plot_player_radar(skills, player_name):
     fig.add_trace(go.Scatterpolar(r=list(skills.values()), theta=list(skills.keys()), fill='toself',
                                   name=player_name, line_color='darkviolet', ))
 
-    fig.update_layout(polar=dict(radialaxis=dict(visible=False, range=[0, 100])), showlegend=True)
+    fig.update_layout(polar=dict(radialaxis=dict(
+        visible=False, range=[0, 100])), showlegend=True)
     fig.show()
 
 
@@ -391,7 +413,8 @@ fig = go.Figure()
 # noinspection PyTypeChecker
 fig.add_trace(go.Scatterpolar(r=observation, theta=categories, fill='toself',
                               name=df.iloc[player_index]["Name"], line_color="red"))
-fig.update_layout(polar=dict(radialaxis=dict(visible=False, range=[0, 100])), showlegend=True)
+fig.update_layout(polar=dict(radialaxis=dict(
+    visible=False, range=[0, 100])), showlegend=True)
 fig.show()
 
 # Show the best squad in the world by choosing Lineup.
@@ -405,12 +428,15 @@ lineup = [3, 4, 3]
 
 # function that get best squad in the world based on your Lineup.
 def get_best_squad(lineup):
-    best_squad = df[df.Position == "GK"].sort_values("Overall", ascending=False).iloc[0:1]
+    best_squad = df[df.Position == "GK"].sort_values(
+        "Overall", ascending=False).iloc[0:1]
     for j, k in zip(position.keys(), range(3)):
         best = []
         for i in position.get(j):
-            best.append(df[df.Position == i].sort_values(["Overall", "Potential"], ascending=[False, False]).iloc[0])
-        best = pd.DataFrame(best).sort_values(["Overall", "Potential"], ascending=[False, False])
+            best.append(df[df.Position == i].sort_values(
+                ["Overall", "Potential"], ascending=[False, False]).iloc[0])
+        best = pd.DataFrame(best).sort_values(
+            ["Overall", "Potential"], ascending=[False, False])
         best = best.iloc[0:lineup[k]]
         best_squad = pd.concat([best_squad, best])
     return best_squad
@@ -454,11 +480,12 @@ fig.add_trace(
 fig.update_xaxes(visible=False, range=[0, img_width * scale_factor])
 
 # disable y-axis visible
-fig.update_yaxes(visible=False, range=[0, img_height * scale_factor], scaleanchor="x")
+fig.update_yaxes(visible=False, range=[
+                 0, img_height * scale_factor], scaleanchor="x")
 
 # add player image
 for i in range(11):
-    img = Image.open("../faces/" + str(i) + ".png")
+    img = Image.open("faces/" + str(i) + ".png")
     fig.add_layout_image(dict(x=location_3_4_3[i][0], y=location_3_4_3[i][1], sizex=60, sizey=60, xref="x",
                               yref="y", opacity=1.0, layer="above", source=img))
 # Add background image
