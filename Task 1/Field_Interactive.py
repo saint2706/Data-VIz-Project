@@ -9,7 +9,6 @@ import scipy as sp
 import seaborn as sns
 from PIL import Image
 from plotly.subplots import make_subplots
-from scipy import stats
 import plotly.express as px
 
 warnings.filterwarnings("ignore")
