@@ -10,16 +10,15 @@ import seaborn as sns
 from PIL import Image
 from plotly.subplots import make_subplots
 from scipy import stats
-import plotly.express as px
 warnings.filterwarnings('ignore')
 
 # Read FIFA 19 dataset and show info and describe columns from it.
 df = pd.read_csv(r"Datasets\data.csv", index_col="Unnamed: 0")
-'''print(df.head())'''
-# df.to_csv(r"Outputs\first output.csv", index=False)
+print(df.head())
+df.to_csv(r"Outputs\first output.csv", index=False)
 # get column names.
 col = df.columns
-'''print(col)
+print(col)
 # dimensions of data
 print(df.shape)
 # info for all dataset columns_name, dataType, null_count
@@ -28,7 +27,7 @@ print(df.info())
 print(df.describe())
 # count number of rows that have null value in every columns.
 print(df.isnull().sum())
-'''
+
 # Data Visualisation
 
 # Calculate top 10 countries sorted by most players in the game
@@ -39,19 +38,19 @@ national_players.rename(
     columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
 national_players = national_players.reset_index()
 national_players = national_players.drop(["index"], axis=1)
-'''national_players.head(10)'''
+national_players.head(10)
 
 # Slicing first 10 rows from country player_count dataset
 player_count = national_players.iloc[0:10, 1]
 nation = national_players.iloc[0:10, 0]
 
 # select seaborn style of chart to make display easy on the eyes.
-temp_df = pd.DataFrame(list(zip(list(player_count), list(
-    nation))), columns=['PlayerCount', 'Nation'])
-temp_df.to_csv(r'Outputs\MostPlayersNation.csv')
-fig = px.bar(temp_df, x="Nation", y="PlayerCount",
-             color="PlayerCount", title="Top Countries with Most Players")
-fig.show()
+plt.style.use("seaborn")
+# create bar chart
+plt.bar(nation, player_count)
+plt.xticks(rotation=45)
+plt.title('Top 10 Countries that have players in FIFA 19')
+plt.show()
 
 # Show Distribution of Age for all players
 # slicing Age column and group it and count no. of players that have same age for all ages.
@@ -59,6 +58,7 @@ player_ages = df[['Age', "ID"]].groupby(
     by=['Age'], as_index=False).count().sort_values("ID", ascending=False)
 player_ages.rename(columns={'ID': 'count'}, inplace=True)
 player_ages = player_ages.reset_index().drop(["index"], axis=1)
+player_ages.head()
 
 # display histogram of age for all players and fit a normal distribution line for it.
 _, bins, _ = plt.hist(df.Age, bins=df.Age.max() -
@@ -75,18 +75,14 @@ plt.show()
 
 # Preferred foot analysis.
 # count number of left and right foot preferred players
-preferred_foot = df.groupby("Preferred Foot")[
-    "Preferred Foot"].count().to_list()
+preferred_foot = df.groupby("Preferred Foot")["Preferred Foot"].count()
+print(preferred_foot)
 
-temp_df = pd.DataFrame(
-    list(zip(["Left", "Right"], preferred_foot)), columns=["Foot", "Count"])
-temp_df.to_csv(r'Outputs\PreferredFootAnalysis.csv')
 # plot pie chart to display the percentage for the preferred foot
-fig = px.pie(temp_df, values="Count", names="Foot",
-             title="Preferred Foot Analysis")
-fig.update_traces(textposition="inside",
-                  textinfo="percent+label", pull=[0.25, 0])
-fig.show()
+plt.pie(preferred_foot, labels=["left", "right"], explode=[
+        0.1, 0], autopct='%1.2f%%', colors=["#ea157a", "#0089af"])
+plt.legend()
+plt.show()
 
 # Show positions with the most number of players
 # count number of players for every position in playground that have players and sort it.
@@ -94,14 +90,14 @@ player_position = df[["Position", "ID"]].groupby(by=['Position'], as_index=False
                                                                                                       ascending=False)
 player_position.rename(columns={'ID': 'count'}, inplace=True)
 player_position = player_position.reset_index().drop(["index"], axis=1)
+player_position.head()
 
 # plot bar chart to display the number of players for every position.
-temp_df = pd.DataFrame(
-    list(zip(list(player_position["Position"]), list(player_position["count"]))), columns=['Position', 'Count'])
-temp_df.to_csv(r'Outputs\PlayerPositionAnalysis.csv')
-fig = px.bar(temp_df, x="Position", y="Count", color="Position",
-             title="Player's Position Distribution")
-fig.show()
+plt.figure(figsize=(15, 7))
+plt.bar(player_position["Position"], player_position["count"])
+plt.xticks(rotation=70)
+plt.title("Player's Position Distribution", color="black")
+plt.show()
 
 # Top 10 players for ST, GK, LW, RF Position
 
@@ -126,13 +122,12 @@ RF_position = RF_position.iloc[:10, :]
 def draw(df, color, position, ax):
     plt.style.use('tableau-colorblind10')
     sns.barplot(df["Name"], df["Overall"], color=color, ax=ax).set_title("Top 10 " + position + " players",
-                                                                         fontsize=8)
-    ax.set_xticklabels(ax.get_xticklabels(), rotation=25,
-                       fontdict={'fontsize': 6})
+                                                                         fontsize=14)
+    ax.set_xticklabels(ax.get_xticklabels(), rotation=40)
 
 
 # plot 4 figures that display Top 10 players in ST, GK, LW, RF positions.
-fig, axes = plt.subplots(nrows=2, ncols=2, figsize=[30, 30])
+fig, axes = plt.subplots(nrows=2, ncols=2, figsize=[20, 15])
 
 draw(GK_position, "#e91e63", "GK", axes[0, 0])
 draw(ST_position, "#0089af", "ST", axes[0, 1])
@@ -161,35 +156,33 @@ def getValue(df):
 
 # convert value columns to numeric and calculate the average value.
 lis = getValue(df.Value.values)
-with open(r'Outputs\Report.txt', 'w+') as f:
-    data = "The average value of players in the world = " + \
-        str(round(np.average(np.array(lis)) / 10 ** 6, 2))+"M"
-    f.write(data)
-    f.write('\n')
+print("The average value of players in the world = ",
+      round(np.average(np.array(lis)) / 10 ** 6, 2), "M")
 
-
-'''# plot histogram of values to show distribution of it.
+# plot histogram of values to show distribution of it.
 plt.hist(lis, bins=100)
 plt.show()
 
 sns.boxplot(x=getValue(df.Value.values))
-plt.show()'''
+plt.show()
 
 # Overall rating distribution and most fit line for it.
 # plot the distribution of overall rating.
-fig = px.histogram(df, x="Overall", color="Overall",
-                         title="Overall rating distribution for all players")
-fig.show()
+plt.figure(figsize=(15, 7))
+sns.countplot(df.Overall, label="overall_hist", color="#c81067")
+plt.title("Overall rating distribution for all Players")
+plt.legend()
+plt.show()
+
 # plot the distribution of overall rating and get most fit line for it.
 _, bins, _ = plt.hist(df.Overall, bins=(
-    df.Overall.max() - df.Overall.min()), label="Overall", color="#0093bc")
+    df.Overall.max() - df.Overall.min()), label="overall_hist", color="#0093bc")
 mu, sigma = sp.stats.norm.fit(df.Overall)
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
 plt.title("Overall ratings histogram")
 plt.legend()
 plt.show()
-
 
 # Make Analysis for Real Madrid Club.
 # select Real Madrid player from data
@@ -205,28 +198,28 @@ real_Madrid_players.Release = getValue(real_Madrid_players.Release)
 real_Madrid_players.sort_values("Release", inplace=True, ascending=False)
 real_Madrid_players = real_Madrid_players.reset_index()
 real_Madrid_players.drop("index", axis=1, inplace=True)
+real_Madrid_players.head(10)
 
-real_Madrid_players.to_csv(r'Outputs\RealMadridPlayers.csv')
+print("Overall mean value for Real Madrid Team = ",
+      round(real_Madrid_players.Overall.mean()), "%")
 
-with open(r'Outputs\Report.txt', 'a+') as f:
-    data = "Overall mean value for Real Madrid Team = " + \
-        str(round(real_Madrid_players.Overall.mean())) + "%"
-    f.write(data)
-    f.write('\n')
-    data2 = "Release Corr. Overall= " + \
-        str(round(real_Madrid_players.Release.corr(real_Madrid_players.Overall), 2))
-    f.write(data2)
-    f.write('\n')
-
+print("Release Corr. Overall= ", round(
+    real_Madrid_players.Release.corr(real_Madrid_players.Overall), 2))
 
 # plot chart for Release Values.
-fig = px.bar(real_Madrid_players, x="Name", y="Release",
-             color="Release", title="Real Madrid Release Values")
-fig.show()
+plt.figure(figsize=(14, 8))
+plt.bar(real_Madrid_players.Name[:20], real_Madrid_players.Release[:20], width=0.8,
+        label="Player Vs Value")
+plt.title("Real Madrid Release Values")
+plt.xticks(rotation=40)
+plt.xlabel("player name")
+plt.ylabel("value")
+plt.legend()
+plt.show()
+
+
 # Calculate the relation between weight and height for all players(corr. and distribution)
 # function that convert weight to numeric.
-
-
 def get_weight(weight):
     new = []
     for i in weight:
@@ -251,13 +244,25 @@ weight_height.Height = get_height(list(weight_height.Height.values))
 
 # plot scatter for  weight column.
 weight_height.sort_values("Weight", ascending=True, inplace=True)
+plt.figure(figsize=(15, 10))
+plt.scatter(weight_height.Weight, weight_height.Height)
+plt.xticks(rotation=40)
+plt.show()
+
 weight_height.Weight = weight_height.Weight.astype("float64")
 weight_height.Height = weight_height.Height.astype("float64")
-with open(r'Outputs\Report.txt', 'a+') as f:
-    data = "Correlation between Weight and Height of players = " + \
-        str(round(weight_height.Weight.corr(weight_height.Height), 2))
-    f.write(data)
-    f.write('\n')
+print("correlation between Weight and Height of players=",
+      round(weight_height.Weight.corr(weight_height.Height), 2))
+
+# plot the distribution of weight.
+plt.hist(weight_height.Weight, bins=40)
+plt.show()
+
+# plot distribution of Height columns.
+plt.hist(weight_height.Height, bins=40)
+plt.show()
+stats.mode(weight_height.Height)
+print(weight_height.Height.shape)
 
 # Top 10 expensive teams in the world
 # drop nan from needed columns and group by Clubs and sort it by sum op player values.
@@ -266,13 +271,20 @@ club_value_df.columns = ["club", "value"]
 club_value_df.value = getValue(club_value_df.value)
 club_value_df = club_value_df.groupby(
     by=['club'], as_index=False).sum().sort_values(by="value", ascending=False)
-club_value_df.reset_index().drop(
-    "index", axis=1).to_csv(r'Outputs\TopExpensive.csv')
+club_value_df.reset_index().drop("index", axis=1).head(10)
 
 # plot most 10 team have expensive players.
-fig = px.bar(club_value_df[:20], x="club", y="value",
-             title="Top 20 most expensive teams in the world", color="value", labels={'club': "Clubs", 'value': 'Values'})
-fig.show()
+plt.figure(figsize=(12, 7))
+plt.style.use("seaborn")
+plt.bar(club_value_df.club[:10],
+        club_value_df.value[:10], label="club with value")
+plt.title("Top 10 most expensive teams in the world", fontsize=15)
+plt.xlabel("Teams")
+plt.ylabel("Value")
+plt.xticks(rotation=40)
+plt.legend()
+plt.show()
+
 # Calculate ATTRIBUTE DETAILS for any player you want.
 # attribute dictionary key attribute and values skills columns for every attribute.
 attribute_dict = {"shooting": ["Positioning", "Finishing", "ShotPower", "LongShots", "Volleys", "Penalties"],
@@ -326,7 +338,7 @@ def plot_player_attribute(player_index, observation, skills):
     fig.update_layout(autosize=False, height=300, width=2300, bargap=0.5, bargroupgap=0.3, barmode="overlay",
                       hovermode="x", margin=dict(r=0, l=0, b=0, t=100),
                       title=(
-                          {'text': observation["Name"] + " Attribute Details", 'y': 0.9, 'x': 0.5, 'xanchor': 'right',
+                          {'text': observation["Name"] + " ATTRIBUTE DETAILS", 'y': 0.9, 'x': 0.5, 'xanchor': 'right',
                            'yanchor': 'top'}))
     fig.update_xaxes(range=[0, 100])
     fig.show()
@@ -435,7 +447,7 @@ best_squad = get_best_squad(lineup)
 best_squad.reset_index(inplace=True)
 player_index = list(best_squad.loc[:, ["index"]].values.reshape(11, ))
 best_squad.drop("index", axis=1, inplace=True)
-best_squad.to_csv(r'Outputs\BestSquad.csv')
+print(best_squad)
 
 # Plot the best squad on playground based on Lineup [3,4,3].
 # location of player on chart.
@@ -477,7 +489,7 @@ for i in range(11):
     fig.add_layout_image(dict(x=location_3_4_3[i][0], y=location_3_4_3[i][1], sizex=60, sizey=60, xref="x",
                               yref="y", opacity=1.0, layer="above", source=img))
 # Add background image
-img = Image.open(r"field.jpg")
+img = Image.open("field.jpg")
 fig.add_layout_image(dict(x=0, sizex=img_width * scale_factor, y=img_height * scale_factor,
                           sizey=img_height * scale_factor, xref="x", yref="y", opacity=1.0, layer="below",
                           sizing="stretch", source=img))
