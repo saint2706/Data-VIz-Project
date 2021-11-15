@@ -1,0 +1,652 @@
+,club,value
+0,Real Madrid,1857688000.0
+1,FC Barcelona,1813000000.0
+2,Manchester City,1512907000.0
+3,Atlético Madrid,1375649000.0
+4,Paris Saint-Germain,1216266000.0
+5,Juventus,1193600000.0
+6,Tottenham Hotspur,1192323000.0
+7,Liverpool,1155832000.0
+8,Manchester United,1142500000.0
+9,Chelsea,1092814000.0
+10,FC Bayern München,1035518000.0
+11,Napoli,898100000.0
+12,Arsenal,858346000.0
+13,Valencia CF,802200000.0
+14,Borussia Dortmund,732401000.0
+15,Inter,716287000.0
+16,FC Porto,669800000.0
+17,SL Benfica,660700000.0
+18,Olympique Lyonnais,628795000.0
+19,Lazio,615194000.0
+20,Sevilla FC,614998000.0
+21,Real Betis,599079000.0
+22,Villarreal CF,595969000.0
+23,Milan,584488000.0
+24,Sporting CP,581500000.0
+25,Roma,567500000.0
+26,Bayer 04 Leverkusen,564861000.0
+27,Everton,526645000.0
+28,Athletic Club de Bilbao,519214000.0
+29,RB Leipzig,502540000.0
+30,Olympique de Marseille,502419000.0
+31,West Ham United,499648000.0
+32,AS Monaco,494500000.0
+33,Leicester City,475700000.0
+34,TSG 1899 Hoffenheim,469027000.0
+35,Real Sociedad,465772000.0
+36,RC Celta,458000000.0
+37,Borussia Mönchengladbach,454756000.0
+38,FC Schalke 04,434619000.0
+39,SC Braga,396000000.0
+40,VfL Wolfsburg,387060000.0
+41,Ajax,386500000.0
+42,Southampton,371175000.0
+43,Shakhtar Donetsk,369400000.0
+44,Levante UD,362400000.0
+45,Burnley,359907000.0
+46,SD Eibar,343792000.0
+47,OGC Nice,340835000.0
+48,Dynamo Kyiv,340425000.0
+49,Spartak Moscow,339400000.0
+50,Deportivo Alavés,337600000.0
+51,Watford,335598000.0
+52,Girona FC,332174000.0
+53,SV Werder Bremen,327246000.0
+54,Getafe CF,321904000.0
+55,Crystal Palace,321233000.0
+56,Newcastle United,312159000.0
+57,RCD Espanyol,309376000.0
+58,Lokomotiv Moscow,308575000.0
+59,Brighton & Hove Albion,307013000.0
+60,Olympiacos CFP,303000000.0
+61,Bournemouth,301142000.0
+62,PSV,300191000.0
+63,Eintracht Frankfurt,298590000.0
+64,Udinese,294600000.0
+65,Wolverhampton Wanderers,288369000.0
+66,VfB Stuttgart,284689000.0
+67,Beşiktaş JK,279543000.0
+68,Hertha BSC,275291000.0
+69,Fiorentina,271614000.0
+70,Torino,261613000.0
+71,FC Girondins de Bordeaux,254688000.0
+72,Vitória Guimarães,252800000.0
+73,Galatasaray SK,252425000.0
+74,Club Brugge KV,243803000.0
+75,1. FSV Mainz 05,242677000.0
+76,Stade Rennais FC,241518000.0
+77,PAOK,237544000.0
+78,Huddersfield Town,236761000.0
+79,PFC CSKA Moscow,234264000.0
+80,Atalanta,233028000.0
+81,Sassuolo,229944000.0
+82,Fulham,229594000.0
+83,Bologna,227500000.0
+84,Boca Juniors,226171000.0
+85,Fenerbahçe SK,225645000.0
+86,Toulouse Football Club,219756000.0
+87,1. FC Köln,217046000.0
+88,LOSC Lille,214388000.0
+89,FC Augsburg,212858000.0
+90,Montpellier HSC,212718000.0
+91,AEK Athens,211460000.0
+92,Rayo Vallecano,211026000.0
+93,SC Freiburg,208535000.0
+94,FC Nantes,203476000.0
+95,Hannover 96,200671000.0
+96,En Avant de Guingamp,199525000.0
+97,AS Saint-Étienne,199508000.0
+98,Grêmio,199458000.0
+99,Celtic,194472000.0
+100,Atlético Mineiro,194318000.0
+101,Cagliari,192165000.0
+102,Shanghai SIPG FC,191207000.0
+103,Beijing Sinobo Guoan FC,191155000.0
+104,Stoke City,187988000.0
+105,Sampdoria,187309000.0
+106,Tigres U.A.N.L.,186531000.0
+107,KRC Genk,186000000.0
+108,Medipol Başakşehir FK,184734000.0
+109,Dinamo Zagreb,183456000.0
+110,Angers SCO,181717000.0
+111,Independiente,180685000.0
+112,SK Slavia Praha,175077000.0
+113,Feyenoord,173082000.0
+114,Dijon FCO,172906000.0
+115,Club América,171954000.0
+116,Monterrey,166740000.0
+117,CD Leganés,163413000.0
+118,RC Strasbourg Alsace,161819000.0
+119,Trabzonspor,159704000.0
+120,SPAL,155020000.0
+121,Amiens SC,151470000.0
+122,Stade Malherbe Caen,151134000.0
+123,Chievo Verona,149976000.0
+124,FC Red Bull Salzburg,149691000.0
+125,Leeds United,149477000.0
+126,River Plate,148789000.0
+127,Standard de Liège,148466000.0
+128,Atlanta United,147342000.0
+129,Racing Club,147060000.0
+130,Internacional,146950000.0
+131,RSC Anderlecht,146651000.0
+132,Cardiff City,145604000.0
+133,West Bromwich Albion,144521000.0
+134,AZ Alkmaar,144075000.0
+135,Swansea City,144059000.0
+136,Portimonense SC,140624000.0
+137,Al Hilal,137796000.0
+138,FC Basel 1893,137477000.0
+139,Hamburger SV,137202000.0
+140,Dalian YiFang FC,136675000.0
+141,Genoa,134951000.0
+142,KAA Gent,133408000.0
+143,Real Valladolid CF,128916000.0
+144,GD Chaves,127100000.0
+145,Deportivo de La Coruña,126530000.0
+146,Fortuna Düsseldorf,125810000.0
+147,Nottingham Forest,125435000.0
+148,Norwich City,125216000.0
+149,Stade de Reims,125149000.0
+150,Empoli,122235000.0
+151,Viktoria Plzeň,118219000.0
+152,Atiker Konyaspor,118100000.0
+153,Aston Villa,117673000.0
+154,Fluminense,117101000.0
+155,Al Nassr,114470000.0
+156,Göztepe SK,114300000.0
+157,Sparta Praha,114020000.0
+158,Rangers FC,113856000.0
+159,MKE Ankaragücü,112880000.0
+160,Clube Sport Marítimo,112700000.0
+161,Cruz Azul,112463000.0
+162,Al Ahli,111720000.0
+163,Panathinaikos FC,110740000.0
+164,Santos Laguna,110501000.0
+165,Middlesbrough,108813000.0
+166,Málaga CF,108668000.0
+167,Guadalajara,108100000.0
+168,Cruzeiro,107865000.0
+169,Rio Ave FC,104931000.0
+170,1. FC Nürnberg,104368000.0
+171,Brentford,102532000.0
+172,Preston North End,102194000.0
+173,Frosinone,100410000.0
+174,Alanyaspor,99911000.0
+175,Çaykur Rizespor,97693000.0
+176,Derby County,97499000.0
+177,Botafogo,96988000.0
+178,Bristol City,96869000.0
+179,Los Angeles FC,96206000.0
+180,Kasimpaşa SK,96042000.0
+181,LA Galaxy,93364000.0
+182,Guangzhou Evergrande Taobao FC,93198000.0
+183,Toronto FC,93081000.0
+184,Sheffield Wednesday,92956000.0
+185,Santos,92788000.0
+186,Pachuca,92578000.0
+187,Kayserispor,92370000.0
+188,San Lorenzo de Almagro,92330000.0
+189,CD Feirense,91582000.0
+190,UD Las Palmas,91510000.0
+191,Vitória de Setúbal,91100000.0
+192,New York Red Bulls,90504000.0
+193,Akhisar Belediyespor,89980000.0
+194,FC Metz,89797000.0
+195,Antalyaspor,88556000.0
+196,Boavista FC,88482000.0
+197,Royal Antwerp FC,88435000.0
+198,Sporting Kansas City,88112000.0
+199,Palermo,88055000.0
+200,Bursaspor,87136000.0
+201,América FC (Minas Gerais),86836000.0
+202,Moreirense FC,85656000.0
+203,CD Nacional,84963000.0
+204,BSC Young Boys,83393000.0
+205,U.N.A.M.,82843000.0
+206,Club Atlético Colón,82646000.0
+207,FC København,81636000.0
+208,Colo-Colo,81253000.0
+209,Club Atlético Lanús,80906000.0
+210,Real Oviedo,80751000.0
+211,Seattle Sounders FC,80465000.0
+212,Club Tijuana,80050000.0
+213,Jiangsu Suning FC,78958000.0
+214,Kaizer Chiefs,78736000.0
+215,Real Sporting de Gijón,78379000.0
+216,Parma,77422000.0
+217,Columbus Crew SC,76388000.0
+218,SD Huesca,76355000.0
+219,Vitória,75826000.0
+220,Nîmes Olympique,75798000.0
+221,Bahia,75002000.0
+222,Shanghai Greenland Shenhua FC,74685000.0
+223,Junior FC,74527000.0
+224,DC United,74445000.0
+225,Atlético Nacional,74398000.0
+226,FC Ingolstadt 04,74296000.0
+227,Deportivo Toluca,73853000.0
+228,Club León,73707000.0
+229,Vitesse,73417000.0
+230,Sivasspor,73002000.0
+231,Queens Park Rangers,72949000.0
+232,CD Aves,72841000.0
+233,Al Wehda,72613000.0
+234,FC Dallas,72386000.0
+235,Guangzhou R&F; FC,72260000.0
+236,New York City FC,72139000.0
+237,Reading,72073000.0
+238,Deportivo Cali,71361000.0
+239,FC Utrecht,71114000.0
+240,Sheffield United,69944000.0
+241,Club Atlas,69203000.0
+242,Vélez Sarsfield,68975000.0
+243,Hull City,68784000.0
+244,Real Zaragoza,67878000.0
+245,1. FC Union Berlin,67847000.0
+246,Yeni Malatyaspor,67768000.0
+247,Birmingham City,67331000.0
+248,Santa Clara,67057000.0
+249,Real Salt Lake,66800000.0
+250,CD Tenerife,66583000.0
+251,Godoy Cruz,66108000.0
+252,Querétaro,66082000.0
+253,Rosario Central,64832000.0
+254,Changchun Yatai FC,64601000.0
+255,Shandong Luneng TaiShan FC,64579000.0
+256,CA Osasuna,64500000.0
+257,Atlético Paranaense,64128000.0
+258,Universidad de Chile,63954000.0
+259,FC Midtjylland,63896000.0
+260,Monarcas Morelia,63635000.0
+261,Hebei China Fortune FC,62485000.0
+262,Al Ittihad,62282000.0
+263,Blackburn Rovers,62159000.0
+264,FC St. Pauli,62132000.0
+265,SV Darmstadt 98,62061000.0
+266,Sport Club do Recife,61962000.0
+267,SK Rapid Wien,61894000.0
+268,Club Atlético Huracán,61586000.0
+269,SC Heerenveen,60316000.0
+270,Portland Timbers,59600000.0
+271,Orlando Pirates,59412000.0
+272,CD Numancia,59382000.0
+273,Wigan Athletic,59308000.0
+274,Sporting de Charleroi,58915000.0
+275,Universidad Católica,58739000.0
+276,Os Belenenses,58601000.0
+277,Club Necaxa,58264000.0
+278,VfL Bochum 1848,57706000.0
+279,CD Tondela,57670000.0
+280,Sint-Truidense VV,57555000.0
+281,Vancouver Whitecaps FC,57334000.0
+282,Millonarios FC,57208000.0
+283,Orlando City SC,56829000.0
+284,Estudiantes de La Plata,56772000.0
+285,Chapecoense,56501000.0
+286,Rosenborg BK,56459000.0
+287,FC Groningen,56266000.0
+288,Chongqing Dangdai Lifan FC SWM Team,56155000.0
+289,KV Oostende,55656000.0
+290,AJ Auxerre,55112000.0
+291,Millwall,54808000.0
+292,Malmö FF,54358000.0
+293,Minnesota United FC,54206000.0
+294,Club Atlético Banfield,53846000.0
+295,MSV Duisburg,53075000.0
+296,CD Lugo,52609000.0
+297,Sporting Lokeren,52390000.0
+298,Houston Dynamo,52307000.0
+299,Kashima Antlers,52057000.0
+300,DSC Arminia Bielefeld,51892000.0
+301,SV Sandhausen,51515000.0
+302,Brøndby IF,51439000.0
+303,BB Erzurumspor,51396000.0
+304,Unión de Santa Fe,51140000.0
+305,Puebla FC,51133000.0
+306,Guizhou Hengfeng FC,50624000.0
+307,Philadelphia Union,50622000.0
+308,Montreal Impact,50293000.0
+309,KV Kortrijk,50256000.0
+310,Defensa y Justicia,50068000.0
+311,Tianjin Quanjian FC,50046000.0
+312,Legia Warszawa,50044000.0
+313,Club Atlético Talleres,49999000.0
+314,Ipswich Town,49905000.0
+315,ADO Den Haag,49287000.0
+316,Henan Jianye FC,49042000.0
+317,Independiente Santa Fe,48860000.0
+318,Chicago Fire,48757000.0
+319,FC Lorient,48723000.0
+320,Paraná,48610000.0
+321,Holstein Kiel,48384000.0
+322,Cádiz CF,48029000.0
+323,Granada CF,47558000.0
+324,Atlético Tucumán,47204000.0
+325,Beijing Renhe FC,47056000.0
+326,SV Zulte-Waregem,46702000.0
+327,Vissel Kobe,46471000.0
+328,SG Dynamo Dresden,46432000.0
+329,SK Sturm Graz,46095000.0
+330,Brescia,45655000.0
+331,Gimnasia y Esgrima La Plata,45618000.0
+332,1. FC Heidenheim 1846,45601000.0
+333,US Salernitana 1919,45406000.0
+334,Heracles Almelo,45321000.0
+335,Deportes Tolima,45159000.0
+336,Aberdeen,45097000.0
+337,AIK,44999000.0
+338,Willem II,44868000.0
+339,Club Atlético Tigre,44584000.0
+340,Racing Club de Lens,44357000.0
+341,Crotone,43931000.0
+342,Benevento,43843000.0
+343,Al Shabab,43802000.0
+344,San Jose Earthquakes,43679000.0
+345,Le Havre AC,43636000.0
+346,FC Sion,43490000.0
+347,Tianjin TEDA FC,42610000.0
+348,Bolton Wanderers,42366000.0
+349,Sunderland,42020000.0
+350,AD Alcorcón,41959000.0
+351,Newell's Old Boys,41237000.0
+352,Ceará Sporting Club,41207000.0
+353,Jeonbuk Hyundai Motors,41103000.0
+354,Belgrano de Córdoba,41042000.0
+355,Urawa Red Diamonds,40653000.0
+356,Hellas Verona,38764000.0
+357,Lech Poznań,38453000.0
+358,Kawasaki Frontale,38288000.0
+359,New England Revolution,38023000.0
+360,SC Paderborn 07,37631000.0
+361,Heart of Midlothian,37357000.0
+362,Kashiwa Reysol,37290000.0
+363,Stade Brestois 29,37170000.0
+364,ESTAC Troyes,36949000.0
+365,SpVgg Greuther Fürth,36294000.0
+366,PEC Zwolle,36290000.0
+367,Argentinos Juniors,36185000.0
+368,CF Reus Deportiu,35883000.0
+369,Grasshopper Club Zürich,35860000.0
+370,Molde FK,35799000.0
+371,Gimnàstic de Tarragona,35398000.0
+372,Albacete BP,35030000.0
+373,AS Nancy Lorraine,34806000.0
+374,KAS Eupen,34785000.0
+375,FK Austria Wien,34747000.0
+376,Fortuna Sittard,34470000.0
+377,Ascoli,34264000.0
+378,Jagiellonia Białystok,33932000.0
+379,Spezia,33701000.0
+380,Tiburones Rojos de Veracruz,33465000.0
+381,Colorado Rapids,33458000.0
+382,Suwon Samsung Bluewings,33435000.0
+383,Sagan Tosu,33234000.0
+384,Lobos BUAP,33071000.0
+385,Independiente Medellín,33014000.0
+386,Pescara,32990000.0
+387,Al Taawoun,32919000.0
+388,Perugia,32857000.0
+389,Rionegro Águilas,32693000.0
+390,Córdoba CF,32634000.0
+391,IFK Norrköping,32406000.0
+392, SSV Jahn Regensburg,32271000.0
+393,Venezia FC,32202000.0
+394,Charlton Athletic,31941000.0
+395,Kilmarnock,31920000.0
+396,Portsmouth,31887000.0
+397,Cittadella,31797000.0
+398,FC Erzgebirge Aue,31643000.0
+399,Ettifaq FC,31319000.0
+400,Al Qadisiyah,31274000.0
+401,Melbourne Victory,31160000.0
+402,Lechia Gdańsk,31142000.0
+403,FC Zürich,31007000.0
+404,UD Almería,30981000.0
+405,1. FC Magdeburg,30938000.0
+406,Barnsley,30212000.0
+407,US Cremonese,29874000.0
+408,Ulsan Hyundai FC,29819000.0
+409,CD Universidad de Concepción,29474000.0
+410,Once Caldas,29421000.0
+411,Al Fayha,29339000.0
+412,AC Ajaccio,29132000.0
+413,Chamois Niortais Football Club,28976000.0
+414,Cerezo Osaka,28922000.0
+415,Excelsior,28195000.0
+416,Patronato,27999000.0
+417,Clermont Foot 63,27522000.0
+418,Lecce,27348000.0
+419,Carpi,27198000.0
+420,Nagoya Grampus,27188000.0
+421,Peterborough United,27035000.0
+422,Odense Boldklub,27010000.0
+423,Hibernian,27005000.0
+424,Waasland-Beveren,26976000.0
+425,Hammarby IF,26771000.0
+426,Foggia,26678000.0
+427,Elche CF,26659000.0
+428,Sanfrecce Hiroshima,26629000.0
+429,RCD Mallorca,26527000.0
+430,Grenoble Foot 38,26456000.0
+431,FC Luzern,26390000.0
+432,América de Cali,26344000.0
+433,FC Seoul,26264000.0
+434,SK Brann,26241000.0
+435,Al Faisaly,26169000.0
+436,FC Nordsjælland,26161000.0
+437,Red Star FC,26148000.0
+438,Rotherham United,25977000.0
+439,1. FC Kaiserslautern,25762000.0
+440,KSV Cercle Brugge,25561000.0
+441,Extremadura UD,25433000.0
+442,De Graafschap,25278000.0
+443,Jeju United FC,25230000.0
+444,Djurgårdens IF,25207000.0
+445,Valenciennes FC,25185000.0
+446,Royal Excel Mouscron,25054000.0
+447,La Equidad,24929000.0
+448,Club Atlético Aldosivi,24895000.0
+449,KFC Uerdingen 05,24726000.0
+450,Atlético Huila,24659000.0
+451,Audax Italiano,24658000.0
+452,CD Everton de Viña del Mar,24641000.0
+453,Motherwell,24622000.0
+454,Aalborg BK,24567000.0
+455,CD Palestino,24169000.0
+456,Milton Keynes Dons,24135000.0
+457,Unión Española,24116000.0
+458,Górnik Zabrze,23933000.0
+459,Melbourne City FC,23788000.0
+460,Patriotas Boyacá FC,23629000.0
+461,Gamba Osaka,23599000.0
+462,FC St. Gallen,23371000.0
+463,Pohang Steelers,23316000.0
+464,Western Sydney Wanderers,23295000.0
+465,Walsall,23231000.0
+466,Pogoń Szczecin,23182000.0
+467,NAC Breda,23106000.0
+468,FC Sochaux-Montbéliard,22957000.0
+469,Envigado FC,22921000.0
+470,Plymouth Argyle,22894000.0
+471,SV Wehen Wiesbaden,22749000.0
+472,FC Tokyo,22287000.0
+473,Colchester United,22199000.0
+474,LASK Linz,22136000.0
+475,Yokohama F. Marinos,22044000.0
+476,Jeonnam Dragons,21994000.0
+477,Al Fateh,21953000.0
+478,Livorno,21921000.0
+479,Alianza Petrolera,21912000.0
+480,CD O'Higgins,21892000.0
+481,Shimizu S-Pulse,21871000.0
+482,Coventry City,21729000.0
+483,Deportivo Pasto,21721000.0
+484,Karlsruher SC,21711000.0
+485,CD Huachipato,21592000.0
+486,Eintracht Braunschweig,21589000.0
+487,Wisła Kraków,21579000.0
+488,Strømsgodset IF,21535000.0
+489,Southend United,21486000.0
+490,San Luis de Quillota,21480000.0
+491,Gangwon FC,21479000.0
+492,Stabæk Fotball,21352000.0
+493,St. Johnstone FC,21337000.0
+494,Al Hazem,21317000.0
+495,Daegu FC,21308000.0
+496,Luton Town,20947000.0
+497,CF Rayo Majadahonda,20796000.0
+498,San Martin de Tucumán,20759000.0
+499,FC Admira Wacker Mödling,20740000.0
+500,Deportes Iquique,20705000.0
+501,Al Batin,20693000.0
+502,Al Raed,20627000.0
+503,VVV-Venlo,20350000.0
+504,Oxford United,20298000.0
+505,Newcastle Jets,20071000.0
+506,Brisbane Roar,19921000.0
+507,FC Würzburger Kickers,19871000.0
+508,Kalmar FF,19857000.0
+509,Scunthorpe United,19857000.0
+510,Burton Albion,19780000.0
+511,FC Lugano,19462000.0
+512,FC Hansa Rostock,19187000.0
+513,FC Thun,19178000.0
+514,Incheon United FC,19146000.0
+515,Perth Glory,19101000.0
+516,La Berrichonne de Châteauroux,19063000.0
+517,Paris FC,19053000.0
+518,BK Häcken,18906000.0
+519,Rochdale,18862000.0
+520,SC Preußen Münster,18583000.0
+521,FC Emmen,18553000.0
+522,IF Elfsborg,18512000.0
+523,Bradford City,18422000.0
+524,San Martín de San Juan,18137000.0
+525,Sydney FC,17982000.0
+526,GFC Ajaccio,17874000.0
+527,Doncaster Rovers,17874000.0
+528,Fleetwood Town,17770000.0
+529,Dundalk,17747000.0
+530,Arka Gdynia,17739000.0
+531,Vålerenga Fotball,17692000.0
+532,Gyeongnam FC,17569000.0
+533,Piast Gliwice,17237000.0
+534,Hallescher FC,17226000.0
+535,CD Antofagasta,17220000.0
+536,Blackpool,17196000.0
+537,Aarhus GF,17184000.0
+538,SG Sonnenhof Großaspach,17169000.0
+539,Sarpsborg 08 FF,17102000.0
+540,Shrewsbury,17079000.0
+541,Wolfsberger AC,17020000.0
+542,Padova,17010000.0
+543,Vejle Boldklub,17002000.0
+544,VfR Aalen,16788000.0
+545,SpVgg Unterhaching,16708000.0
+546,Cracovia,16640000.0
+547,VfL Osnabrück,16624000.0
+548,IK Start,16599000.0
+549,FC Wacker Innsbruck,16568000.0
+550,Bristol Rovers,16513000.0
+551,Adelaide United,16411000.0
+552,Unión La Calera,16386000.0
+553,AS Béziers,16382000.0
+554,SV Mattersburg,16359000.0
+555,Östersunds FK,16302000.0
+556,Odds BK,16230000.0
+557,Zagłębie Lubin,16224000.0
+558,VfL Sportfreunde Lotte,16206000.0
+559,SCR Altach,16191000.0
+560,Mansfield Town,16055000.0
+561,Jaguares de Córdoba,16002000.0
+562,FSV Zwickau,15775000.0
+563,US Orléans Loiret Football,15684000.0
+564,Wisła Płock,15625000.0
+565,FC Carl Zeiss Jena,15528000.0
+566,FC Energie Cottbus,15500000.0
+567,SC Fortuna Köln,15345000.0
+568,Korona Kielce,15288000.0
+569,Dundee FC,15232000.0
+570,HJK Helsinki,15191000.0
+571,Wycombe Wanderers,14999000.0
+572,Tromsø IL,14925000.0
+573,Cosenza,14894000.0
+574,SKN St. Pölten,14860000.0
+575,Northampton Town,14739000.0
+576,Club Deportes Temuco,14720000.0
+577,Itagüí Leones FC,14525000.0
+578,Gillingham,14358000.0
+579,Júbilo Iwata,14271000.0
+580,Atlético Bucaramanga,14209000.0
+581,Ohod Club,14164000.0
+582,Lincoln City,13966000.0
+583,Randers FC,13959000.0
+584,Miedź Legnica,13880000.0
+585,Exeter City,13797000.0
+586,Bury,13783000.0
+587,TSV 1860 München,13699000.0
+588,AFC Wimbledon,13650000.0
+589,Örebro SK,13636000.0
+590,Central Coast Mariners,13530000.0
+591,Notts County,13528000.0
+592,Kristiansund BK,13476000.0
+593,Livingston FC,13426000.0
+594,Accrington Stanley,13412000.0
+595,Shamrock Rovers,13121000.0
+596,SV Meppen,13096000.0
+597,Neuchâtel Xamax,13068000.0
+598,GIF Sundsvall,13022000.0
+599,Śląsk Wrocław,12909000.0
+600,Vendsyssel FF,12882000.0
+601,Hokkaido Consadole Sapporo,12822000.0
+602,St. Mirren,12548000.0
+603,FK Bodø/Glimt,12543000.0
+604,Lillestrøm SK,12525000.0
+605,FK Haugesund,12522000.0
+606,Wellington Phoenix,12419000.0
+607,Forest Green Rovers,12291000.0
+608,Hobro IK,12055000.0
+609,Yeovil Town,12046000.0
+610,TSV Hartberg,12041000.0
+611,Curicó Unido,11976000.0
+612,IK Sirius,11910000.0
+613,IFK Göteborg,11859000.0
+614,V-Varen Nagasaki,11553000.0
+615,Crawley Town,11528000.0
+616,SønderjyskE,11457000.0
+617,Boyacá Chicó FC,11305000.0
+618,Oldham Athletic,11147000.0
+619,Shonan Bellmare,10534000.0
+620,Ranheim Fotball,10515000.0
+621,Crewe Alexandra,10400000.0
+622,Esbjerg fB,10377000.0
+623,Sandefjord Fotball,10106000.0
+624,Swindon Town,10082000.0
+625,Cork City,9916000.0
+626,Port Vale,9911000.0
+627,Stevenage,9879000.0
+628,Cheltenham Town,9688000.0
+629,Vegalta Sendai,9646000.0
+630,Hamilton Academical FC,9445000.0
+631,AC Horsens,9299000.0
+632,Newport County,9221000.0
+633,Cambridge United,9125000.0
+634,Tranmere Rovers,9114000.0
+635,Trelleborgs FF,8915000.0
+636,Waterford FC,8887000.0
+637,Zagłębie Sosnowiec,8811000.0
+638,IF Brommapojkarna,8506000.0
+639,Grimsby Town,7590000.0
+640,Morecambe,7287000.0
+641,Carlisle United,7277000.0
+642,Macclesfield Town,6922000.0
+643,Dalkurd FF,6819000.0
+644,St. Patrick's Athletic,6766000.0
+645,Sligo Rovers,5897000.0
+646,Bohemian FC,5633000.0
+647,Sangju Sangmu FC,5171000.0
+648,Derry City,4703000.0
+649,Bray Wanderers,3488000.0
+650,Limerick FC,3438000.0

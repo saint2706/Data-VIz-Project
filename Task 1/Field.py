@@ -255,7 +255,7 @@ weight_height.Weight = weight_height.Weight.astype("float64")
 weight_height.Height = weight_height.Height.astype("float64")
 with open(r'Outputs\Report.txt', 'a+') as f:
     data = "Correlation between Weight and Height of players = " + \
-        round(weight_height.Weight.corr(weight_height.Height), 2)
+        str(round(weight_height.Weight.corr(weight_height.Height), 2))
     f.write(data)
     f.write('\n')
 
@@ -266,20 +266,13 @@ club_value_df.columns = ["club", "value"]
 club_value_df.value = getValue(club_value_df.value)
 club_value_df = club_value_df.groupby(
     by=['club'], as_index=False).sum().sort_values(by="value", ascending=False)
-club_value_df.reset_index().drop("index", axis=1).head(10)
+club_value_df.reset_index().drop(
+    "index", axis=1).to_csv(r'Outputs\TopExpensive.csv')
 
 # plot most 10 team have expensive players.
-plt.figure(figsize=(12, 7))
-plt.style.use("seaborn")
-plt.bar(club_value_df.club[:10],
-        club_value_df.value[:10], label="club with value")
-plt.title("Top 10 most expensive teams in the world", fontsize=15)
-plt.xlabel("Teams")
-plt.ylabel("Value")
-plt.xticks(rotation=40)
-plt.legend()
-plt.show()
-
+fig = px.bar(club_value_df[:20], x="club", y="value",
+             title="Top 20 most expensive teams in the world", color="value", labels={'club': "Clubs", 'value': 'Values'})
+fig.show()
 # Calculate ATTRIBUTE DETAILS for any player you want.
 # attribute dictionary key attribute and values skills columns for every attribute.
 attribute_dict = {"shooting": ["Positioning", "Finishing", "ShotPower", "LongShots", "Volleys", "Penalties"],
@@ -442,7 +435,7 @@ best_squad = get_best_squad(lineup)
 best_squad.reset_index(inplace=True)
 player_index = list(best_squad.loc[:, ["index"]].values.reshape(11, ))
 best_squad.drop("index", axis=1, inplace=True)
-print(best_squad)
+best_squad.to_csv(r'Outputs\BestSquad.csv')
 
 # Plot the best squad on playground based on Lineup [3,4,3].
 # location of player on chart.
