@@ -15,20 +15,8 @@ warnings.filterwarnings('ignore')
 
 # Read FIFA 19 dataset and show info and describe columns from it.
 df = pd.read_csv(r"Datasets\data.csv", index_col="Unnamed: 0")
-'''print(df.head())'''
-# df.to_csv(r"Outputs\first output.csv", index=False)
-# get column names.
-col = df.columns
-'''print(col)
-# dimensions of data
-print(df.shape)
-# info for all dataset columns_name, dataType, null_count
-print(df.info())
-# description of data min, max, mean, std values for all columns
-print(df.describe())
-# count number of rows that have null value in every columns.
-print(df.isnull().sum())
-'''
+
+
 # Data Visualisation
 
 # Calculate top 10 countries sorted by most players in the game
@@ -39,7 +27,7 @@ national_players.rename(
     columns={'Nationality': "country", 'ID': 'player_count'}, inplace=True)
 national_players = national_players.reset_index()
 national_players = national_players.drop(["index"], axis=1)
-'''national_players.head(10)'''
+
 
 # Slicing first 10 rows from country player_count dataset
 player_count = national_players.iloc[0:10, 1]
@@ -167,13 +155,6 @@ with open(r'Outputs\Report.txt', 'w+') as f:
     f.write(data)
     f.write('\n')
 
-
-'''# plot histogram of values to show distribution of it.
-plt.hist(lis, bins=100)
-plt.show()
-
-sns.boxplot(x=getValue(df.Value.values))
-plt.show()'''
 
 # Overall rating distribution and most fit line for it.
 # plot the distribution of overall rating.
