@@ -18,6 +18,40 @@ app = dash.Dash()  # initialising dash app
 
 df = pd.read_csv(r"Datasets\data.csv", index_col="Unnamed: 0")
 
+
+def top_10_cunts():
+    national_players = (
+        df[["Nationality", "ID"]]
+        .groupby(by=["Nationality"], as_index=False)
+        .count()
+        .sort_values("ID", ascending=False)
+    )
+
+    national_players.rename(
+        columns={"Nationality": "country", "ID": "player_count"}, inplace=True
+    )
+    national_players = national_players.reset_index()
+    national_players = national_players.drop(["index"], axis=1)
+
+    # Slicing first 10 rows from country player_count dataset
+    player_count = national_players.iloc[0:10, 1]
+    nation = national_players.iloc[0:10, 0]
+
+    # select seaborn style of chart to make display easy on the eyes.
+    temp_df = pd.DataFrame(
+        list(zip(list(player_count), list(nation))), columns=["PlayerCount", "Nation"]
+    )
+    # temp_df.to_csv(r"Outputs\MostPlayersNation.csv")
+    fig = px.bar(
+        temp_df,
+        x="Nation",
+        y="PlayerCount",
+        color="PlayerCount",
+        title="Top Countries with Most Players",
+    )
+    return fig
+
+
 attribute_dict = {
     "shooting": [
         "Positioning",
@@ -135,12 +169,115 @@ def plot_player_attribute(player_index, observation, skills):
     return fig
 
 
-app.layout = html.Div(id='parent', children=[
-    html.H1(id='H1', children='Styling using html components', style={'textAlign': 'center',
-                                                                      'marginTop': 40, 'marginBottom': 40}),
+def preffoot():
+    preferred_foot = df.groupby("Preferred Foot")[
+        "Preferred Foot"].count().to_list()
 
-    dcc.Dropdown(id='dropdown', options=[{'label': 'L. Messi', 'value': 0}, {
-                 'label': 'Ronaldo', 'value': 1}, {'label': 'Neymar Jr', 'value': 2}, {'label': 'M. Salah', 'value': 26}], value=0),
+    temp_df = pd.DataFrame(
+        list(zip(["Left", "Right"], preferred_foot)), columns=["Foot", "Count"]
+    )
+    # temp_df.to_csv(r"Outputs\PreferredFootAnalysis.csv")
+    # plot pie chart to display the percentage for the preferred foot
+    fig = px.pie(temp_df, values="Count", names="Foot",
+                 title="Preferred Foot Analysis")
+    fig.update_traces(textposition="inside",
+                      textinfo="percent+label", pull=[0.25, 0])
+    return fig
+
+
+def posAnal():
+    player_position = (
+        df[["Position", "ID"]]
+        .groupby(by=["Position"], as_index=False)
+        .count()
+        .sort_values("ID", ascending=False)
+    )
+
+    player_position.rename(columns={"ID": "count"}, inplace=True)
+    player_position = player_position.reset_index().drop(["index"], axis=1)
+
+    # plot bar chart to display the number of players for every position.
+    temp_df = pd.DataFrame(
+        list(zip(list(player_position["Position"]),
+                 list(player_position["count"]))),
+        columns=["Position", "Count"],
+    )
+    # temp_df.to_csv(r"Outputs\PlayerPositionAnalysis.csv")
+    fig = px.bar(
+        temp_df,
+        x="Position",
+        y="Count",
+        color="Position",
+        title="Player's Position Distribution",
+    )
+    return fig
+
+
+def getValue(df):
+    new = []
+    for i in df:
+        i = i.strip("€")
+        if "K" in i:
+            i = i.strip("K")
+            new.append(float(i) * 1000)
+        elif "M" in i:
+            i = i.strip("M")
+            new.append(float(i) * (10 ** 6))
+        else:
+            new.append(0.0)
+
+    return new
+
+
+def overRate():
+    fig = px.histogram(
+        df,
+        x="Overall",
+        color="Overall",
+        title="Overall rating distribution for all players",
+    )
+    return fig
+
+
+def top10expensive():
+    club_value_df = df[["Club", "Release Clause"]].dropna(how="any")
+
+    club_value_df.columns = ["club", "value"]
+    club_value_df.value = getValue(club_value_df.value)
+    club_value_df = (
+        club_value_df.groupby(by=["club"], as_index=False)
+        .sum()
+        .sort_values(by="value", ascending=False)
+    )
+    club_value_df.reset_index().drop(
+        "index", axis=1).to_csv(r"Outputs\TopExpensive.csv")
+
+    # plot most 10 team have expensive players.
+    fig = px.bar(
+        club_value_df[:20],
+        x="club",
+        y="value",
+        title="Top 20 most expensive teams in the world",
+        color="value",
+        labels={"club": "Clubs", "value": "Values"},
+    )
+    return fig
+
+
+app.layout = html.Div(id='parent', children=[
+    html.H1(id='H1', children='Dashboard 101', style={'textAlign': 'center',
+                                                      'marginTop': 'auto', 'marginBottom': 'auto'}),
+    dcc.Dropdown(id='dropdown', options=[
+        {'label': 'L. Messi Attribute chart', 'value': 0},
+        {'label': 'Ronaldo Attribute chart', 'value': 1},
+        {'label': 'Neymar Jr Attribute chart', 'value': 2},
+        {'label': 'M. Salah Attribute chart', 'value': 26},
+        {'label': 'top 10 countries with maximum players', 'value': 'top10'},
+        {'label': 'Preferred foot analysis', 'value': 'footfetish'},
+        {'label': 'Position Analyis', 'value': 'posAnal'},
+        {'label': 'OverAll Rating Distribution', 'value': 'overRate'},
+        {'label': 'expensive clubs', 'value': 'mehengaai'}
+    ], value=0),
     dcc.Graph(id='attributes')
 ]
 )
@@ -149,8 +286,19 @@ app.layout = html.Div(id='parent', children=[
 @app.callback(Output(component_id='attributes', component_property='figure'),
               [Input(component_id='dropdown', component_property='value')])
 def graph_update(dropdown_value):
-    return plot_player_attribute(
-        dropdown_value, df.iloc[dropdown_value], list(calculate_attribute(df, dropdown_value).keys()))
+    if dropdown_value in [0, 1, 2, 26]:
+        return plot_player_attribute(
+            dropdown_value, df.iloc[dropdown_value], list(calculate_attribute(df, dropdown_value).keys()))
+    if dropdown_value == 'top10':
+        return top_10_cunts()
+    if dropdown_value == 'footfetish':
+        return preffoot()
+    if dropdown_value == 'posAnal':
+        return posAnal()
+    if dropdown_value == 'overRate':
+        return overRate()
+    if dropdown_value == 'mehengaai':
+        return top10expensive()
 
 
 if __name__ == '__main__':
