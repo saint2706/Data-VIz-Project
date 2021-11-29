@@ -42,6 +42,7 @@ nation = national_players.iloc[0:10, 0]
 temp_df = pd.DataFrame(
     list(zip(list(player_count), list(nation))), columns=["PlayerCount", "Nation"]
 )
+# noinspection PyTypeChecker
 temp_df.to_csv(r"Outputs\MostPlayersNation.csv")
 fig = px.bar(
     temp_df,
@@ -67,7 +68,9 @@ player_ages = player_ages.reset_index().drop(["index"], axis=1)
 _, bins, _ = plt.hist(
     df.Age, bins=df.Age.max() - df.Age.min(), label="Age with no. of player"
 )
+# noinspection PyUnresolvedReferences
 mu, sigma = sp.stats.norm.fit(df.Age)
+# noinspection PyUnresolvedReferences
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
 
@@ -85,6 +88,7 @@ preferred_foot = df.groupby("Preferred Foot")[
 temp_df = pd.DataFrame(
     list(zip(["Left", "Right"], preferred_foot)), columns=["Foot", "Count"]
 )
+# noinspection PyTypeChecker
 temp_df.to_csv(r"Outputs\PreferredFootAnalysis.csv")
 # plot pie chart to display the percentage for the preferred foot
 fig = px.pie(temp_df, values="Count", names="Foot",
@@ -110,6 +114,7 @@ temp_df = pd.DataFrame(
          list(player_position["count"]))),
     columns=["Position", "Count"],
 )
+# noinspection PyTypeChecker
 temp_df.to_csv(r"Outputs\PlayerPositionAnalysis.csv")
 fig = px.bar(
     temp_df,
@@ -144,6 +149,7 @@ RF_position = RF_position.iloc[:10, :]
 
 
 # function to plot bar chart for top 10 players in selected positions.
+# noinspection PyShadowingNames
 def draw(df, color, position, ax):
     plt.style.use("tableau-colorblind10")
     sns.barplot(df["Name"], df["Overall"], color=color, ax=ax).set_title(
@@ -165,6 +171,7 @@ plt.show()
 
 # Distribution of all player's value and calculate The average value of players.
 # function that converts value column of players to numeric.
+# noinspection PyShadowingNames
 def getValue(df):
     new = []
     for i in df:
@@ -195,6 +202,7 @@ with open(r"Outputs\Report.txt", "w+") as f:
 
 # Overall rating distribution and most fit line for it.
 # plot the distribution of overall rating.
+# noinspection PyRedeclaration
 fig = px.histogram(
     df,
     x="Overall",
@@ -209,7 +217,9 @@ _, bins, _ = plt.hist(
     label="Overall",
     color="#0093bc",
 )
+# noinspection PyUnresolvedReferences
 mu, sigma = sp.stats.norm.fit(df.Overall)
+# noinspection PyUnresolvedReferences
 best_fit_line = sp.stats.norm.pdf(bins, mu, sigma)
 plt.plot(bins, df.shape[0] * best_fit_line, label="fit_line", color="red")
 plt.title("Overall ratings histogram")
@@ -263,6 +273,7 @@ fig.show()
 # function that convert weight to numeric.
 
 
+# noinspection PyShadowingNames
 def get_weight(weight):
     new = []
     for i in weight:
@@ -272,6 +283,7 @@ def get_weight(weight):
 
 
 # function that convert height to numeric.
+# noinspection PyShadowingNames
 def get_height(height):
     new = []
     for i in height:
@@ -358,6 +370,7 @@ attribute_dict = {
 
 
 # function that calculate attribute for any player: need using player index
+# noinspection PyShadowingNames
 def calculate_attribute(dataframe, player_index):
     allcols = []
 
@@ -380,11 +393,13 @@ def calculate_attribute(dataframe, player_index):
 
 
 # function get skills values for any attribute.
+# noinspection PyShadowingNames
 def get_attributes_values(attribute, observation):
     return observation.loc[attribute_dict.get(attribute)].astype("int64")
 
 
 # function that plot player attribute: need index of player skills.
+# noinspection PyShadowingNames
 def plot_player_attribute(player_index, observation, skills):
     colors = ["#03a309", "#a3037e", "#fd3689", "#ded118", "#474bc9"]
     go.Figure()
@@ -479,7 +494,7 @@ plot_player_attribute(
 
 # Radar Plot for player attribute's Details
 # function plot radar diagram for any player, need player skills and player name.
-# noinspection PyTypeChecker
+# noinspection PyTypeChecker,PyShadowingNames
 def plot_player_radar(skills, player_name):
     fig = go.Figure()
 
@@ -560,6 +575,7 @@ lineup = [3, 4, 3]
 
 
 # function that get best squad in the world based on your Lineup.
+# noinspection PyShadowingNames
 def get_best_squad(lineup):
     best_squad = (
         df[df.Position == "GK"].sort_values(
@@ -590,6 +606,7 @@ player_index = list(
     )
 )
 best_squad.drop("index", axis=1, inplace=True)
+# noinspection PyTypeChecker
 best_squad.to_csv(r"Outputs\BestSquad.csv")
 
 # Plot the best squad on playground based on Lineup [3,4,3].

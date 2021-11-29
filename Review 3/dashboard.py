@@ -1,18 +1,14 @@
-import dash
-from dash import html
-from dash import dcc
-import plotly.graph_objects as go
-import plotly.express as px
 import warnings
+
+import dash
 import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
-import scipy as sp
-import seaborn as sns
-from PIL import Image
-from plotly.subplots import make_subplots
 import plotly.express as px
+import plotly.graph_objects as go
+from dash import dcc
+from dash import html
 from dash.dependencies import Input, Output
+from plotly.subplots import make_subplots
+
 warnings.filterwarnings("ignore")
 app = dash.Dash()  # initialising dash app
 
@@ -119,7 +115,7 @@ def get_attributes_values(attribute, observation):
     # function that plot player attribute: need index of player skills.
 
 
-def plot_player_attribute(player_index, observation, skills):
+def plot_player_attribute(observation, skills):
     colors = ["#03a309", "#a3037e", "#fd3689", "#ded118", "#474bc9"]
     go.Figure()
     fig = make_subplots(rows=1, cols=5)
@@ -213,6 +209,7 @@ def posAnal():
     return fig
 
 
+# noinspection PyShadowingNames
 def getValue(df):
     new = []
     for i in df:
@@ -288,7 +285,7 @@ app.layout = html.Div(id='parent', children=[
 def graph_update(dropdown_value):
     if dropdown_value in [0, 1, 2, 26]:
         return plot_player_attribute(
-            dropdown_value, df.iloc[dropdown_value], list(calculate_attribute(df, dropdown_value).keys()))
+            df.iloc[dropdown_value], list(calculate_attribute(df, dropdown_value).keys()))
     if dropdown_value == 'top10':
         return top_10_cunts()
     if dropdown_value == 'footfetish':
